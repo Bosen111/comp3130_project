@@ -1,9 +1,15 @@
 package group16.backend.user.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import group16.backend.task.entity.TaskModel;
 
 @Entity
 public class UserModel {
@@ -17,6 +23,10 @@ public class UserModel {
     private String name;
 
     private String password;
+    
+    @OneToMany(targetEntity = TaskModel.class)
+    @JoinColumn(name = "task_mapping")
+    private List<TaskModel> tasks;
 
     //Constructor
     public UserModel(String name, String emailId, String password) {
@@ -62,6 +72,12 @@ public class UserModel {
         this.password = password;
     }
 
+    public List<TaskModel> getTasks() {
+        return tasks;
+    }
 
+    public void setTasks(List<TaskModel> tasks) {
+        this.tasks = tasks;
+    }
     
 }
