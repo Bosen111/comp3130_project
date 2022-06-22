@@ -9,8 +9,8 @@ build:
     tags:
         - ugrad
     script: 
-        cd back-end
-        mvn clean package -DskipTests=true
+        - cd back-end
+        - mvn clean package -DskipTests=true
 
 # Test
 test:
@@ -18,6 +18,6 @@ test:
     tags: 
         - ugrad
     script:
-        cd back-end
-        mvn clean verify 
+        - cd back-end
+        - mvn clean verify 
 
