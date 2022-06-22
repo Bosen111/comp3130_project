@@ -1,0 +1,23 @@
+# Definition
+stages:
+    - build
+    - test
+
+# Build
+build:
+    stage: build
+    tags:
+        - ugrad
+    script: 
+        cd back-end
+        mvn clean package -DskipTests=true
+
+# Test
+test:
+    stage: test
+    tags: 
+        - ugrad
+    script:
+        cd back-end
+        mvn clean verify 
+
