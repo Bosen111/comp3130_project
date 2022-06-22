@@ -12,7 +12,6 @@ function Register(){
             baseURL: 'http://localhost:9001',
             url: '/user/save',
             data: user,
-            headers: {'Access-Control-Allow-Origin': '*'}
         })
         .then(() => history.replace('/login'))
         .catch(function (error) {

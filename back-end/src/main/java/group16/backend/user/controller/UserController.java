@@ -29,6 +29,11 @@ public class UserController {
         return userService.signUpUser(userModel);
     }
 
+    @PostMapping("/login")
+    public UserModel loginUser(@RequestBody UserModel userModel) throws Exception {
+        return userService.logInUser(userModel.getEmail(), userModel.getPassword());
+    }
+
     @CrossOrigin(origins = {"http://localhost:3000"})
     @PutMapping("/assignTask/{userId}")
     public UserModel updateTask(@PathVariable Long userId, @RequestParam Long taskId) {

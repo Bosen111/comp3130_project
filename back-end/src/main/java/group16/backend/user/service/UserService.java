@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.websocket.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,20 @@ public class UserService {
 
         return userRepository.save(userModel);
 
+    }
+
+    public UserModel logInUser(String userEmail, String userPassword) {
+        
+        UserModel user = userRepository.findByEmail(userEmail).get(0);
+
+        if(user != null){
+            //create session???????
+            return user;
+        }
+        else {
+            return null;
+        }
+        
     }
 
     public UserModel updateTask(Long userId, Long taskId) {

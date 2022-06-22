@@ -3,13 +3,15 @@ import LoginForm from "../components/LoginForm";
 
 function Login(){
 
+    const history = useHistory();
+    const axios = require('axios');
+
     function loginUserHandler(user){
         axios({
             method: 'post',
             baseURL: 'http://localhost:9001',
-            url: '/user/save',
+            url: '/user/login',
             data: user,
-            headers: {'Access-Control-Allow-Origin': '*'}
         })
         .then(() => history.replace('/home'))
         .catch(function (error) {
