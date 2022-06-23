@@ -7,7 +7,7 @@ stages:
 build:
     stage: build
     tags:
-        - ugrad
+        - dalfcs_docker_kvm
     script: 
         - cd back-end
         - mvn clean package -DskipTests=true
@@ -16,7 +16,7 @@ build:
 test:
     stage: test
     tags: 
-        - ugrad
+        - dalfcs_docker_kvm
     script:
         - cd back-end
         - mvn clean verify 
