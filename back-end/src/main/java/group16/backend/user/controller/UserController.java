@@ -29,9 +29,15 @@ public class UserController {
         return userService.signUpUser(userModel);
     }
 
-    @PostMapping("/login")
-    public UserModel loginUser(@RequestBody UserModel userModel) throws Exception {
-        return userService.logInUser(userModel.getEmail(), userModel.getPassword());
+    // @PostMapping("/login")
+    // public UserModel loginUser(@RequestBody UserModel userModel) throws Exception {
+    //     return userService.logInUser(userModel.getEmail(), userModel.getPassword());
+    // }
+
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @PostMapping("/changePassword")
+    public UserModel changePassword(@RequestParam String email, @RequestParam String secAnswer, @RequestParam String newPassword){
+        return userService.updatePassword(email, secAnswer, newPassword);
     }
 
     @CrossOrigin(origins = {"http://localhost:3000"})

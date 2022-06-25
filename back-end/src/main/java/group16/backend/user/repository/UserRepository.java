@@ -1,6 +1,6 @@
 package group16.backend.user.repository;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -9,5 +9,5 @@ import group16.backend.user.entity.UserModel;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Long> {
-    List<UserModel> findByEmail(String email);
+    Optional<UserModel> findByEmail(String email);
 }

@@ -1,37 +1,34 @@
 import React, { useRef } from 'react';
 
-function RegisterForm(props){
+function ResetPasswordForm(props){
 
-    const nameRef = useRef();
     const emailRef = useRef();
-    const passwordRef = useRef();
     const secAnswerRef = useRef();
+    const newPwRef = useRef();
 
     function submitHandler(event){
         event.preventDefault();
         //Read the values
-        const name = nameRef.current.value;
         const email = emailRef.current.value;
-        const password = passwordRef.current.value;
-        const securityAnswer = secAnswerRef.current.value;
-        const user = {name, email, password, securityAnswer};
+        const secAnswer = secAnswerRef.current.value;
+        const newPassword = newPwRef.current.value;
+        const user = {email, secAnswer, newPassword};
         console.log(user);
 
         //Send the values to the server
-        props.registerUser(user);
+        props.resetPassword(user);
     }
 
     return(
         <form onSubmit={submitHandler}>
-            <input type="text" required placeholder="Name" ref={nameRef}/>
             <input type="email" required placeholder="Email" ref={emailRef}/>
-            <input type="password" required placeholder="Password" ref={passwordRef}/>
             <label>Security Question: What is your mothers maiden name?</label>
             <input type="text" required placeholder="Answer" ref={secAnswerRef}/>
+            <input type="password" required placeholder="New Password" ref={newPwRef}/>
             <button>Submit</button>
         </form>
 
     );
 }
 
-export default RegisterForm;
+export default ResetPasswordForm;

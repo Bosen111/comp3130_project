@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.websocket.Session;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,11 +35,14 @@ public class UserService {
 
     public UserModel logInUser(String userEmail, String userPassword) {
         
-        UserModel user = userRepository.findByEmail(userEmail).get(0);
+        Optional<UserModel> user = userRepository.findByEmail(userEmail);
 
-        if(user != null){
+        if(user.isPresent()){
+            UserModel userModel = user.get();
+            //check password
             //create session???????
-            return user;
+            //jwt token
+            return userModel;
         }
         else {
             return null;
@@ -73,6 +74,29 @@ public class UserService {
 
             }
 
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return updatedUser;
+    }
+
+    public UserModel updatePassword(String email, String secAnswer, String newPassword){
+
+        UserModel updatedUser = null;
+        Optional<UserModel> user = null;
+
+        try{
+            user = userRepository.findByEmail(email);
+            if(user.isPresent()) {
+                
+                UserModel userModel = user.get();
+
+                if(userModel.getSecurityAnswer().equals(secAnswer)){
+                    userModel.setPassword(newPassword);
+                    updatedUser = userRepository.save(userModel);
+                }
+
+            }
         } catch (Exception ex){
             ex.printStackTrace();
         }

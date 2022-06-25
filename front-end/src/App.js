@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ForgotPw from "./pages/ForgotPw";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
           </Route>
           <Route path="/home">
             <Home/>
+          </Route>
+          <Route path="/forgotPw">
+            <ForgotPw/>
           </Route>
         </Switch>
       </BrowserRouter>
