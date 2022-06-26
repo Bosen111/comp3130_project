@@ -3,6 +3,7 @@ package group16.backend.user.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import group16.backend.user.entity.UserModel;
 import group16.backend.user.service.UserService;
@@ -26,18 +28,32 @@ public class UserController {
     @CrossOrigin(origins = {"http://localhost:3000"})
     @PostMapping("/save")
     public UserModel signupUser(@RequestBody UserModel userModel) throws Exception {
-        return userService.signUpUser(userModel);
+        try{
+            return userService.signUpUser(userModel);
+        } catch(ResponseStatusException ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with this Email already exists");
+        }
     }
 
-    // @PostMapping("/login")
-    // public UserModel loginUser(@RequestBody UserModel userModel) throws Exception {
-    //     return userService.logInUser(userModel.getEmail(), userModel.getPassword());
-    // }
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @PostMapping("/login")
+    public UserModel loginUser(@RequestBody UserModel userModel) throws Exception {
+        try{
+            return userService.logInUser(userModel.getEmail(), userModel.getPassword());
+        } catch(ResponseStatusException ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Email or Password");
+        }
+    }
 
     @CrossOrigin(origins = {"http://localhost:3000"})
     @PostMapping("/changePassword")
     public UserModel changePassword(@RequestParam String email, @RequestParam String secAnswer, @RequestParam String newPassword){
-        return userService.updatePassword(email, secAnswer, newPassword);
+        try{
+            return userService.updatePassword(email, secAnswer, newPassword);
+        } catch (ResponseStatusException ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect Credentials");
+        }
+        
     }
 
     @CrossOrigin(origins = {"http://localhost:3000"})

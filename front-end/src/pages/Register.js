@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
 
@@ -5,6 +6,7 @@ function Register(){
 
     const history = useHistory();
     const axios = require('axios');
+    const [isError, setError] = useState(false);
 
     function registerUserHandler(user){
         axios({
@@ -16,6 +18,7 @@ function Register(){
         .then(() => history.replace('/login'))
         .catch(function (error) {
             console.log(error);
+            setError(true);
         });
     }
 
@@ -23,6 +26,7 @@ function Register(){
         <div>
             <h1>Registration Page</h1>
             <RegisterForm registerUser={registerUserHandler}/>
+            {isError? <p class="redText">User with this Email already exists</p> : '' }
         </div>
     );
 }

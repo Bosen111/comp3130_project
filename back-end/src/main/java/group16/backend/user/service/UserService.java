@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import group16.backend.task.entity.TaskModel;
 import group16.backend.task.service.TaskService;
@@ -23,11 +25,11 @@ public class UserService {
 
     public UserModel signUpUser(UserModel userModel) {
 
-        //todo: check if the email already exists
-        // if(false) {
-        //     throw new Exception("User with this email already exists.");
-        // }
-        //check lab code for how to throw to front end
+        Optional<UserModel> user = userRepository.findByEmail(userModel.getEmail());
+
+        if(user.isPresent()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with this email already exists");
+        }
 
         return userRepository.save(userModel);
 
@@ -39,13 +41,15 @@ public class UserService {
 
         if(user.isPresent()){
             UserModel userModel = user.get();
-            //check password
-            //create session???????
-            //jwt token
-            return userModel;
-        }
-        else {
-            return null;
+
+            if(userModel.getPassword().equals(userPassword)){
+                return userModel;
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect Password");
+            }
+
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with this Email doesn't exist");
         }
         
     }
@@ -80,25 +84,25 @@ public class UserService {
         return updatedUser;
     }
 
-    public UserModel updatePassword(String email, String secAnswer, String newPassword){
+    public UserModel updatePassword(String email, String secAnswer, String newPassword) throws ResponseStatusException{
 
         UserModel updatedUser = null;
         Optional<UserModel> user = null;
 
-        try{
-            user = userRepository.findByEmail(email);
-            if(user.isPresent()) {
-                
-                UserModel userModel = user.get();
+        user = userRepository.findByEmail(email);
+        if(user.isPresent()) {
+            
+            UserModel userModel = user.get();
 
-                if(userModel.getSecurityAnswer().equals(secAnswer)){
-                    userModel.setPassword(newPassword);
-                    updatedUser = userRepository.save(userModel);
-                }
-
+            if(userModel.getSecurityAnswer().equals(secAnswer)){
+                userModel.setPassword(newPassword);
+                updatedUser = userRepository.save(userModel);
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect Security Answer");
             }
-        } catch (Exception ex){
-            ex.printStackTrace();
+
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No user found with this email");
         }
         return updatedUser;
     }

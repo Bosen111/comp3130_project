@@ -15,10 +15,14 @@ function RegisterForm(props){
         const password = passwordRef.current.value;
         const securityAnswer = secAnswerRef.current.value;
         const user = {name, email, password, securityAnswer};
-        console.log(user);
 
-        //Send the values to the server
-        props.registerUser(user);
+        //Send the values to the server after checking password
+        var regularExpression = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if(regularExpression.test(password)){
+            props.registerUser(user);
+        } else {
+            alert("Password needs to be at least 8 characters, have at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character");
+        }
     }
 
     return(

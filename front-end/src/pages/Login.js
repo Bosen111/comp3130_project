@@ -1,10 +1,12 @@
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 import LoginForm from "../components/LoginForm";
 
 function Login(){
 
     const history = useHistory();
     const axios = require('axios');
+    const [isError, setError] = useState(false);
 
     function loginUserHandler(user){
         axios({
@@ -16,6 +18,7 @@ function Login(){
         .then(() => history.replace('/home'))
         .catch(function (error) {
             console.log(error);
+            setError(true);
         });
     }
 
@@ -23,6 +26,7 @@ function Login(){
         <div>
             <h1>Login Page</h1>
             <LoginForm loginUser={loginUserHandler}/>
+            {isError? <p class="redText">Invalid Credentials</p> : '' }
         </div>
     );
 }

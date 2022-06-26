@@ -13,10 +13,14 @@ function ResetPasswordForm(props){
         const secAnswer = secAnswerRef.current.value;
         const newPassword = newPwRef.current.value;
         const user = {email, secAnswer, newPassword};
-        console.log(user);
 
-        //Send the values to the server
-        props.resetPassword(user);
+        //Send the values to the server after checking password
+        var regularExpression = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if(regularExpression.test(newPassword)){
+            props.resetPassword(user);
+        } else {
+            alert("Password needs to be at least 8 characters, have at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character");
+        }
     }
 
     return(
