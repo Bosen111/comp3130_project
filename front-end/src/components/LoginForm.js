@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import '../login.css';
 
 function LoginForm(props){
 
@@ -17,12 +18,21 @@ function LoginForm(props){
     }
 
     return(
-        <form onSubmit={submitHandler}>
-            <input type="email" required placeholder="Email" ref={emailRef}/>
-            <input type="password" required placeholder="Password" ref={passwordRef}/>
-            <button>Submit</button>
-        </form>
-
+        <div className="show-content">
+            <div className="login-wrapper">
+                <form onSubmit={submitHandler}>
+                    <div className="input-item">
+                        <p>Email: </p>
+                        <input type="text" required placeholder='Email' ref={emailRef}/>
+                    </div>
+                    <div className="input-item">
+                        <p>Password: </p>
+                        <input type="password" required placeholder='Password' ref={passwordRef}/>
+                    </div>
+                    <button>Submit</button>
+                </form>
+            </div>
+        </div>
     );
 }
 

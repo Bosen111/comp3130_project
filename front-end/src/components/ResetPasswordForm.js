@@ -24,13 +24,31 @@ function ResetPasswordForm(props){
     }
 
     return(
-        <form onSubmit={submitHandler}>
-            <input type="email" required placeholder="Email" ref={emailRef}/>
-            <label>Security Question: What is your mothers maiden name?</label>
-            <input type="text" required placeholder="Answer" ref={secAnswerRef}/>
-            <input type="password" required placeholder="New Password" ref={newPwRef}/>
-            <button>Submit</button>
-        </form>
+
+        <div className="show-content">
+            <div className="login-wrapper">
+                <form onSubmit={submitHandler}>
+                    <div className="input-item">
+                        <p>Email: </p>
+                        <input type="text" required placeholder='Email' ref={emailRef}/>
+                    </div>
+                    <div className="input-item">
+                        <p>Security Question: </p>
+                        <label>Who's your favorite fictional character?</label>
+                    </div>
+                    <div className="input-item">
+                        <p>Answer: </p>
+                        <input type="text" required placeholder='Answer' ref={secAnswerRef}/>
+                    </div>
+                    <div className="input-item">
+                        <p>New Password: </p>
+                        <input type="password" required placeholder='Password' ref={newPwRef}/>
+                    </div>
+                    
+                    <button>Submit</button>
+                </form>
+            </div>
+        </div>
 
     );
 }

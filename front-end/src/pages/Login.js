@@ -1,6 +1,8 @@
 import { useHistory } from "react-router-dom";
+
 import { useState } from "react";
 import LoginForm from "../components/LoginForm";
+import '../login.css'
 
 function Login(){
 
@@ -23,7 +25,7 @@ function Login(){
     }
 
     return(
-        <div>
+        <div className="tabs-content">
             <h1>Login Page</h1>
             <LoginForm loginUser={loginUserHandler}/>
             {isError? <p class="redText">Invalid Credentials</p> : '' }
