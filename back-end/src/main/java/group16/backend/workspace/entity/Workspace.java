@@ -5,8 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "workspace")
 public class Workspace {
-    public Workspace(String workspaceName, String description) {
+    public Workspace(String workspaceName, String workspaceType, String description) {
         this.workspaceName = workspaceName;
+        this.workspaceType = workspaceType;
         this.description = description;
     }
 

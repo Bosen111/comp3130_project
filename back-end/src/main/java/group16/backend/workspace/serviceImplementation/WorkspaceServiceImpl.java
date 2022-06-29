@@ -15,17 +15,21 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 
     @Override
     public void saveWorkspace(Workspace workspace) {
-        workspace.setDescription(workspace.getDescription());
-        workspace.setWorkspaceType(workspace.getWorkspaceType());
-        workspace.setWorkspaceName(workspace.getWorkspaceName());
-        workspaceRepo.save(workspace);
+        try {
+            workspace.setDescription(workspace.getDescription());
+            workspace.setWorkspaceType(workspace.getWorkspaceType());
+            workspace.setWorkspaceName(workspace.getWorkspaceName());
+            workspaceRepo.save(workspace);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteWorkspace(Integer workspaceId) {
         try {
             workspaceRepo.deleteById(workspaceId);
-        } catch (EmptyResultDataAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
