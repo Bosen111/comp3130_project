@@ -14,18 +14,20 @@ public class Workspace {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer workspaceId;
 
     private String workspaceName;
 
+    private String workspaceType;
+
     private String description;
 
-    public Integer getId() {
-        return id;
+    public Integer getWorkspaceId() {
+        return workspaceId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setWorkspaceId(Integer workspaceId) {
+        this.workspaceId = workspaceId;
     }
 
     public String getWorkspaceName() {
@@ -34,6 +36,14 @@ public class Workspace {
 
     public void setWorkspaceName(String workspaceName) {
         this.workspaceName = workspaceName;
+    }
+
+    public String getWorkspaceType() {
+        return workspaceType;
+    }
+
+    public void setWorkspaceType(String workspaceType) {
+        this.workspaceType = workspaceType;
     }
 
     public String getDescription() {
