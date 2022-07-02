@@ -47,11 +47,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>io.github.handsomecoder</groupId>
-			<artifactId>java-utility</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>

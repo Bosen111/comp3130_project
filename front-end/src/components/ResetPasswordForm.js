@@ -30,19 +30,18 @@ function ResetPasswordForm(props){
             <div className="login-wrapper">
                 <form onSubmit={submitHandler}>
                     <div className="input-item">
-                        <p>Email: </p>
+                        <img src={require('../assets/email.png')}></img>
                         <input type="text" required placeholder='Email' ref={emailRef}/>
                     </div>
                     <div className="input-item">
-                        <p>Security Question: </p>
                         <label>Who's your favorite fictional character?</label>
                     </div>
                     <div className="input-item">
-                        <p>Answer: </p>
+                        <img src={require('../assets/help.png')}></img>
                         <input type="text" required placeholder='Answer' ref={secAnswerRef}/>
                     </div>
                     <div className="input-item">
-                        <p>New Password: </p>
+                        <img src={require('../assets/password.png')}></img>
                         <input type="password" required placeholder='Password' ref={newPwRef}/>
                     </div>
 

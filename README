@@ -1,12 +1,6 @@
-npm install
-
-//if 'npm install' missed anything try:
 npm install react-router-dom
 npm install axios
 npm install antd
-npm install mui
-npm install react-bootstrap bootstrap
 
 run BackEndApplication.java
-cd front-end
-npm start
+npm start //for frontend

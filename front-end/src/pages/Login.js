@@ -26,9 +26,12 @@ function Login(){
 
     return(
         <div className="tabs-content">
-            <h1>Login Page</h1>
-            <LoginForm loginUser={loginUserHandler}/>
-            {isError? <p class="redText">Invalid Credentials</p> : '' }
+            <div className="box-content">
+                <h1>Login Page</h1>
+                <LoginForm loginUser={loginUserHandler}/>
+                {isError? <p class="redText">Invalid Credentials</p> : '' }
+            </div>
+           
         </div>
     );
 }
