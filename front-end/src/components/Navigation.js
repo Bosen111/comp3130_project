@@ -1,18 +1,21 @@
-import { Link } from "react-router-dom";
 import React from "react";
 import '../login.css'
+import {Container, Nav, Navbar} from "react-bootstrap";
 
 
 function Navigation(){
     return(
         <>
-        <div>
-            <div className ="tabs-item">
-                <p><Link to="/login">Login</Link></p>
-                <p><Link to="/register">Register</Link></p>
-                <p><Link to="/forgotPw">Forgot Password</Link></p>
-            </div>
-        </div>
+            <Navbar bg="primary" variant="dark">
+                <Container>
+                    <Navbar.Brand href="/App">Home</Navbar.Brand>
+                    <Nav className="me-auto">
+                        <Nav.Link href="/login">Login</Nav.Link>
+                        <Nav.Link href="/register">Register</Nav.Link>
+                        <Nav.Link href="/forgotPw">ForgotPassword</Nav.Link>
+                    </Nav>
+                </Container>
+            </Navbar>
         </>
     );
 }

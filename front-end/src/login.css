@@ -62,11 +62,11 @@
 }
 
 .show-content,.login-page,.culture-wrapper,.about-wrapper{
+    padding-top: 10%;
     height: calc(100vh - 146px);
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .input-item{
@@ -91,14 +91,4 @@
     outline: none;
     border: 1px solid #aaa;
     padding-left: 10px;
-}
-
-.login-page .ant-btn {
-    margin: 0 auto;
-    display: block;
-}
-
-.login-page .ant-btn {
-    margin: 0 auto;
-    display: block;
 }

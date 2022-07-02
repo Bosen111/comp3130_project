@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import Button from "react-bootstrap/Button";
 
 function ResetPasswordForm(props){
 
@@ -44,8 +45,8 @@ function ResetPasswordForm(props){
                         <p>New Password: </p>
                         <input type="password" required placeholder='Password' ref={newPwRef}/>
                     </div>
-                    
-                    <button>Submit</button>
+
+                    <Button variant="primary" type="submit">Submit</Button>
                 </form>
             </div>
         </div>
