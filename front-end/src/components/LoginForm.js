@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import '../login.css';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function LoginForm(props){
 
@@ -29,7 +31,7 @@ function LoginForm(props){
                         <p>Password: </p>
                         <input type="password" required placeholder='Password' ref={passwordRef}/>
                     </div>
-                    <button>Submit</button>
+                    <Button variant="primary" type="submit">Submit</Button>
                 </form>
             </div>
         </div>

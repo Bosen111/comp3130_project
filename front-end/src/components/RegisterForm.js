@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import Button from "react-bootstrap/Button";
 
 function RegisterForm(props){
 
@@ -50,8 +51,8 @@ function RegisterForm(props){
                         <p>Answer: </p>
                         <input type="text" required placeholder='Answer' ref={secAnswerRef}/>
                     </div>
-                    
-                    <button>Submit</button>
+
+                    <Button variant="primary" type="submit">Submit</Button>
                 </form>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
+import Badge from 'react-bootstrap/Badge';
 
 function Register(){
 
