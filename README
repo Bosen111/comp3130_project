@@ -1,6 +1,5 @@
-npm install react-router-dom
-npm install axios
-npm install antd
+npm install
 
 run BackEndApplication.java
-npm start //for frontend
+cd front-end
+npm start
