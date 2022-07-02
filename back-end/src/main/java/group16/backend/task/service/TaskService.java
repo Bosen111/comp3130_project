@@ -1,5 +1,6 @@
 package group16.backend.task.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class TaskService {
 
     public void deleteTask(Long taskId) {
         taskRepository.deleteById(taskId);
+    }
+
+    public List<TaskModel> getAllTasks() {
+
+        return taskRepository.findAll();
     }
     
 }
