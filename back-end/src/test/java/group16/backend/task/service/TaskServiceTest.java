@@ -4,19 +4,15 @@ import com.sun.jdi.LongValue;
 import group16.backend.task.entity.TaskModel;
 import group16.backend.task.repository.TaskRepository;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.mock.mockito.MockBeans;
+
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
-import org.springframework.scheduling.config.Task;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -29,7 +25,18 @@ class TaskServiceTest {
     private TaskRepository taskRepository = new TaskRepository() {
         @Override
         public List<TaskModel> findAll() {
-            return null;
+            List<TaskModel> l = new ArrayList<>();
+            TaskModel task = new TaskModel();
+            task.setTaskName("test");
+            long i = Long.valueOf(12345678910L);
+            task.setId(i);
+            l.add(task);
+            TaskModel task2 = new TaskModel();
+            task2.setTaskName("test");
+            long j = Long.valueOf(123456789L);
+            task2.setId(j);
+            l.add(task2);
+            return l;
         }
 
         @Override
@@ -114,6 +121,13 @@ class TaskServiceTest {
 
         @Override
         public Optional<TaskModel> findById(Long aLong) {
+            TaskModel task = new TaskModel();
+            task.setTaskName("test");
+            long i = Long.valueOf(12345678910L);
+            task.setId(i);
+            if(task.getId().equals(aLong)) {
+                return Optional.of(task);
+            }
             return Optional.empty();
         }
 
@@ -203,14 +217,42 @@ class TaskServiceTest {
         TaskModel tm = new TaskModel();
         tm.setTaskName("test");
         tm.setId(i);
-        assertEquals(tm.getTaskName(), taskService.findTaskByID(i).getTaskName());
+        TaskModel t3 = taskService.findTaskByID(i);
+        assertEquals(tm.getTaskName(), t3.getTaskName());
 
     }
 
     @Test
     void deleteTask() {
-        taskService.deleteTask(Long.valueOf(12345678910L));
+        TaskModel task = new TaskModel();
+        task.setTaskName("test");
+        long i = Long.valueOf(123456789L);
+        task.setId(i);
+        taskService.taskRepository = taskRepository;
+        taskService.createTask(task);
+        taskService.deleteTask(Long.valueOf(123456789L));
+        assertNull(taskService.findTaskByID(123456789L));
+    }
 
-        assertNull(taskService.findTaskByID(Long.valueOf(12345678910L)));
+    @Test
+    void getAllTasks(){
+        List<TaskModel> q = new ArrayList<>();
+        TaskModel task = new TaskModel();
+        task.setTaskName("test");
+        long i = Long.valueOf(12345678910L);
+        task.setId(i);
+        q.add(task);
+        TaskModel task2 = new TaskModel();
+        task2.setTaskName("test");
+        long j = Long.valueOf(123456789L);
+        task2.setId(j);
+        q.add(task2);
+        taskService.taskRepository = taskRepository;
+        taskService.createTask(task);
+        taskService.createTask(task2);
+        List<TaskModel> l = taskService.getAllTasks();
+        for (int x = 0;x < l.size();x++){
+            assertEquals(q.get(x).getId(),l.get(x).getId());
+        }
     }
 }
