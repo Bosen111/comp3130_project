@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,12 @@ class UserServiceTest {
     private UserRepository userRepository = new UserRepository() {
         @Override
         public Optional<UserModel> findByEmail(String email) {
+            UserModel um = new UserModel();
+            um.setEmail("796@gmail.com");
+            um.setPassword("8967");
+            if (um.getEmail().equals(email)) {
+                return Optional.of(um);
+            }
             return Optional.empty();
         }
 
@@ -119,7 +127,11 @@ class UserServiceTest {
 
         @Override
         public Optional<UserModel> findById(Long aLong) {
-            return Optional.empty();
+            UserModel um = new UserModel();
+            um.setEmail("796@gmail.com");
+            um.setPassword("8967");
+            um.setId(aLong);
+            return Optional.of(um);
         }
 
         @Override
@@ -205,64 +217,50 @@ class UserServiceTest {
         UserModel um = new UserModel();
         um.setEmail("796@gmail.com");
         um.setPassword("8967");
+        userService.userRepository = userRepository;
+        UserModel um2 = userService.logInUser("796@gmail.com","8967");
 
+        assertEquals(um2.getEmail(),um.getEmail());
+    }
 
-        /*List<TaskModel> tasks = new ArrayList<>();
-        TaskModel tm = new TaskModel("test");
-        tm.setId(Long.valueOf(2234567892L));
-        taskService.createTask(tm);
-        tasks.add(tm);
-        um.setTasks(tasks);
-        userService.signUpUser(um);
+    @Test
+    void logInUserIncorrectPassword() {
+        UserModel um = new UserModel();
+        um.setEmail("796@gmail.com");
+        um.setPassword("8967");
+        userService.userRepository = userRepository;
+        try {
+            UserModel um2 = userService.logInUser("796@gmail.com", "89672");
+        }catch (ResponseStatusException e){
+            ResponseStatusException x = new ResponseStatusException(HttpStatus.BAD_REQUEST,"Incorrect Password");
+            assertEquals(e.getMessage(),x.getMessage());
+        }
+    }
 
-        UserModel um2 = new UserModel();
-        um2.setEmail("796@gmail.com");
-        um2.setName("796");
-        um2.setId(Long.valueOf(123456789L));
-        um2.setPassword("8967");
-        um2.setSecurityAnswer("cars");
-        um2.setTasks(tasks);
+    @Test
+    void logInUserUserDoesNotExist() {
+        UserModel um = new UserModel();
+        um.setEmail("796@gmail.com");
+        um.setPassword("8967");
+        userService.userRepository = userRepository;
+        try {
+            UserModel um2 = userService.logInUser("7926@gmail.com", "896722");
+        }catch (ResponseStatusException e){
+            ResponseStatusException x = new ResponseStatusException(HttpStatus.BAD_REQUEST,"User with this Email doesn't exist");
+            assertEquals(e.getMessage(),x.getMessage());
+        }
 
-        Mockito.when(userRepository.findByEmail(um.getEmail())).thenReturn(Optional.of(um));
-        assertEquals(um2,userService.logInUser("796@gmail.com","8967"));*/
     }
 
     @Test
     void updateTask() {
         UserModel um = new UserModel();
-        um.setEmail("1234@gmail.com");
-        um.setName("12354");
-        um.setId(Long.valueOf(12345678910L));
-        um.setPassword("123456");
-        um.setSecurityAnswer("cars");
-
-        List<TaskModel> tasks = new ArrayList<>();
-        TaskModel tm = new TaskModel("test");
-        tm.setId(Long.valueOf(1234567892L));
-        taskService.createTask(tm);
-        tasks.add(tm);
-        um.setTasks(tasks);
-        userService.signUpUser(um);
+        um.setEmail("796@gmail.com");
+        um.setPassword("8967");
+        userService.userRepository = userRepository;
 
 
-        UserModel um2 = new UserModel();
-        um2.setEmail("1234@gmail.com");
-        um2.setName("12354");
-        um2.setId(Long.valueOf(12345678910L));
-        um2.setPassword("123456");
-        um2.setSecurityAnswer("cars");
-
-        List<TaskModel> tasks2 = new ArrayList<>();
-        TaskModel tm2 = new TaskModel("test2");
-        tm2.setId(Long.valueOf(1234124L));
-        taskService.createTask(tm2);
-        tasks2.add(tm2);
-        um2.setTasks(tasks2);
-
-        Mockito.when(taskService.findTaskByID(tm.getId())).thenReturn(tm);
-        Mockito.when(userRepository.save(um)).thenReturn(um);
-
-        assertEquals(um2,userService.updateTask(Long.valueOf(12345678910L),Long.valueOf(1234124L)));
+        assertEquals(um,userService.updateTask(Long.valueOf(12345678910L),Long.valueOf(1234124L)));
     }
 
 
