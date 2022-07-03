@@ -23,12 +23,10 @@ function ForgotPw(){
     }
 
     return(
-        <div className="tabs-content">
-            <div className="box-content">
-                <h1>Forgot Password</h1>
-                <ResetPasswordForm resetPassword={changePasswordHandler}/>
-                {isError? <p class="redText">Incorrect Credentials</p> : '' }
-            </div>
+        <div>
+            <h1>Forgot Password</h1>
+            <ResetPasswordForm resetPassword={changePasswordHandler}/>
+            {isError? <p class="redText">Incorrect Credentials</p> : '' }
         </div>
     );
 }

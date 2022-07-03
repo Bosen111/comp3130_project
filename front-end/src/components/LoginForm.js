@@ -24,11 +24,11 @@ function LoginForm(props){
             <div className="login-wrapper">
                 <form onSubmit={submitHandler}>
                     <div className="input-item">
-                        <img src={require('../assets/email.png')}></img>
+                        <p>Email: </p>
                         <input type="text" required placeholder='Email' ref={emailRef}/>
                     </div>
                     <div className="input-item">
-                        <img src={require('../assets/password.png')}></img>
+                        <p>Password: </p>
                         <input type="password" required placeholder='Password' ref={passwordRef}/>
                     </div>
                     <Button variant="primary" type="submit">Submit</Button>
