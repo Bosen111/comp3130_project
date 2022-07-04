@@ -13,14 +13,14 @@ public class WorkspaceController {
 
     @CrossOrigin(origins = {"http://localhost:3000"})
     @PostMapping(path = "/addWorkspace", consumes = "application/json", produces = "application/json")
-    public String addWorkspace(@RequestBody Workspace workspace) {
-        workspaceService.saveWorkspace(workspace);
-        return "Workspace saved successfully";
+    public Workspace addWorkspace(@RequestBody Workspace workspace) {
+        return workspaceService.saveWorkspace(workspace);
+
     }
 
     @CrossOrigin(origins = {"http://localhost:3000"})
     @DeleteMapping("/deleteWorkspace/{workspaceId}")
-    public String deleteTask(@PathVariable Integer workspaceId){
+    public String deleteTask(@PathVariable Long workspaceId){
         workspaceService.deleteWorkspace(workspaceId);
         return "Delete message send successfully";
     }

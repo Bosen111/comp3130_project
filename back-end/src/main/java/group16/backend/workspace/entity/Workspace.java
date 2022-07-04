@@ -15,7 +15,7 @@ public class Workspace {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer workspaceId;
+    private Long workspaceId;
 
     private String workspaceName;
 
@@ -23,11 +23,11 @@ public class Workspace {
 
     private String description;
 
-    public Integer getWorkspaceId() {
+    public Long getWorkspaceId() {
         return workspaceId;
     }
 
-    public void setWorkspaceId(Integer workspaceId) {
+    public void setWorkspaceId(Long workspaceId) {
         this.workspaceId = workspaceId;
     }
 
