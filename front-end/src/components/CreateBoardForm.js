@@ -20,7 +20,7 @@ function CreateBoardForm(props) {
 
     return (
         <section style={{ marginTop: '32px' }}>
-            <Typography variant='h2' component='h2'>Create New Board</Typography>
+            <h1>Create New Board</h1>
             <form onSubmit={createBoard}>
                 <TextField
                     id='boardName'

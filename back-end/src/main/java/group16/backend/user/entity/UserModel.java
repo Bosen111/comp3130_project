@@ -2,14 +2,10 @@ package group16.backend.user.entity;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import group16.backend.task.entity.TaskModel;
+import group16.backend.workspace.entity.Workspace;
 
 @Entity
 public class UserModel {
@@ -29,6 +25,9 @@ public class UserModel {
     @OneToMany(targetEntity = TaskModel.class)
     @JoinColumn(name = "task_mapping")
     private List<TaskModel> tasks;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Workspace> workspaces;
 
     //Constructor
     public UserModel(String name, String email, String password, String securityAnswer) {
