@@ -49,7 +49,7 @@ public class UserService {
             }
 
         } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with this Email doesn't exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with this Email doesn't exist");
         }
         
     }

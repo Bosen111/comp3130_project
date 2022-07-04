@@ -472,7 +472,7 @@ class UserServiceTest {
         try {
             UserModel um2 = userService.logInUser("7926@gmail.com", "896722");
         }catch (ResponseStatusException e){
-            ResponseStatusException x = new ResponseStatusException(HttpStatus.BAD_REQUEST,"User with this Email doesn't exist");
+            ResponseStatusException x = new ResponseStatusException(HttpStatus.NOT_FOUND,"User with this Email doesn't exist");
             assertEquals(e.getMessage(),x.getMessage());
         }
 
