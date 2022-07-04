@@ -6,9 +6,7 @@ import group16.backend.user.entity.UserModel;
 import group16.backend.user.repository.UserRepository;
 import group16.backend.task.service.TaskService;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -27,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceTest {
 
-    @Mock
+
     @Autowired
     private UserRepository userRepository = new UserRepository() {
         @Override
