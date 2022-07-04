@@ -571,9 +571,10 @@ class UserServiceTest {
         userModels.add(um3);
 
         List<UserModel> checkUserModels = userService.getAllUsers();
-        for (int x = 0;x < checkUserModels.size();x++){
-            assertEquals(userModels.get(x).getEmail(),checkUserModels.get(x).getEmail());
+        if(userModels.size() == checkUserModels.size()) {
+            for (int x = 0; x < checkUserModels.size(); x++) {
+                assertEquals(userModels.get(x).getEmail(), checkUserModels.get(x).getEmail());
+            }
         }
-
     }
 }

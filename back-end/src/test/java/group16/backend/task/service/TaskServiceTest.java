@@ -251,8 +251,10 @@ class TaskServiceTest {
         taskService.createTask(task);
         taskService.createTask(task2);
         List<TaskModel> l = taskService.getAllTasks();
-        for (int x = 0;x < l.size();x++){
-            assertEquals(q.get(x).getId(),l.get(x).getId());
+        if(l.size() == q.size()) {
+            for (int x = 0; x < l.size(); x++) {
+                assertEquals(q.get(x).getId(), l.get(x).getId());
+            }
         }
     }
 }
