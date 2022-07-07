@@ -61,10 +61,4 @@ public class WorkspaceServiceImpl implements WorkspaceService {
             e.printStackTrace();
         }
     }
-
-    @Override
-    public void getBoards(Long workspaceId) {
-        List<BoardModel> boards = null;
-        BoardModel board = boardRepository.findById(workspaceId).get();
-    }
 }

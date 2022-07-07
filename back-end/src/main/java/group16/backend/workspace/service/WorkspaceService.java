@@ -8,5 +8,4 @@ public interface WorkspaceService {
     public void saveWorkspace(Workspace workspace);
     public void deleteWorkspace(Long workspaceId);
     public void assignUser(Long userId, Long workspaceId);
-    public void getBoards(Long workspace);
 }

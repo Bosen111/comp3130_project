@@ -29,12 +29,6 @@ public class WorkspaceController {
     }
 
     @CrossOrigin
-    @GetMapping("/get/{workspaceId}")
-    public void getBoards(@PathVariable Long workspaceId) {
-        workspaceService.getBoards(workspaceId);
-    }
-
-    @CrossOrigin
     @PutMapping("/assignUser/{workspaceId}/{userId}")
     public String assignUser(@PathVariable Long userId, @PathVariable Long workspaceId) {
         workspaceService.assignUser(userId, workspaceId);
