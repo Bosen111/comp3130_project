@@ -1,12 +1,83 @@
+# CSCI 3130 - Software Engineering (Summer 2022)
+
+- Date Created: 2022 07 07
+- Date Modified: 2022 07 07
+
+# Team
+
+- Team Name: Group 16
+- Team Members:
+  - (B00830606) | [Maguire Richard | maguire@dal.ca](maguire@dal.ca)
+  - (B00XXXXXX) | [Guanchen Zhu | email@dal.ca](email@dal.ca)
+  - (B00XXXXXX) | [Mohammad Amaan | email@dal.ca](email@dal.ca)
+  - (B00XXXXXX) | [Bosen Hu | email@dal.ca](email@dal.ca)
+  - (B00XXXXXX) | [Yaling Wang | email@dal.ca](email@dal.ca)
+
+# Project
+
+- Project Name: Trello Application
+- Project Description: A web based trello application clone build using ReactJS and Spring Boot
+- Inception Year: 2022
+
+# Links
+
+- [GitLab Project](https://git.cs.dal.ca/courses/2022-summer/csci-3130/projects/group16)
+
+# Frontend
+
+## Prerequisites
+
+- Anything to be downloaded.
+  - ReactJS
+- Anything to be taken care of.
+ - run 'npm install' from base directory
+
+make sure nothing is using localhost:3000
+
+## Installation
+
+cd front-end
 npm install
 
-//if 'npm install' missed anything try:
+if npm install missed any requirements try:
 npm install react-router-dom
 npm install axios
 npm install antd
 npm install mui
 npm install react-bootstrap bootstrap
 
-run BackEndApplication.java
-cd front-end
+## Running the Frontend
+
+from /front-end directory:
 npm start
+
+(this runs on localhost:3000)
+
+# Backend
+
+## Prerequisites
+
+- Anything to be downloaded.
+ - Java
+- Anything to be taken care of.
+ - Make sure Cisco/Dal VPN is running or else you won't be able to connect to database
+
+make sure nothing is using localhost:9001
+
+## Installation
+
+- Steps to setup the backend project on local machine
+
+## Running the Backend
+
+run /back-end/src/main/java/group16/backend/BackEndApplication.java in your IDE
+
+(this runs on localhost:9001)
+
+# Instructor
+
+- [Dr. Tushar Sharma | tushar@dal.ca](tushar@dal.ca)
+
+# Teaching Assistant
+
+- [Rushi Patel | rs397441@dal.ca](rs397441@dal.ca)
