@@ -4,7 +4,7 @@ import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
 function ViewBoards(props) {
     return (
         <section style={{ marginTop: '32px' }}>
-            <Typography variant='h2' component='h2'>Boards</Typography>
+            <h1>Boards</h1>
             <Grid container spacing={2}>
                 {props.boards.map((board) => {
                     return (

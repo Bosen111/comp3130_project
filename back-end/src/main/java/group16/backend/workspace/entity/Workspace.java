@@ -1,6 +1,10 @@
 package group16.backend.workspace.entity;
 
+import group16.backend.board.BoardModel;
+import group16.backend.user.entity.UserModel;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "workspace")
@@ -15,7 +19,7 @@ public class Workspace {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer workspaceId;
+    private Long workspaceId;
 
     private String workspaceName;
 
@@ -23,11 +27,22 @@ public class Workspace {
 
     private String description;
 
-    public Integer getWorkspaceId() {
+    @ManyToMany
+    @JoinTable (name = "users_workspaces",
+        joinColumns = @JoinColumn(name = "workspaceId"),
+        inverseJoinColumns = @JoinColumn(name = "id")
+    )
+    private List<UserModel> users;
+
+    @OneToMany(targetEntity = BoardModel.class)
+    @JoinColumn(name = "board_mapping")
+    private List<BoardModel> boards;
+
+    public Long getWorkspaceId() {
         return workspaceId;
     }
 
-    public void setWorkspaceId(Integer workspaceId) {
+    public void setWorkspaceId(Long workspaceId) {
         this.workspaceId = workspaceId;
     }
 
@@ -53,5 +68,13 @@ public class Workspace {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<UserModel> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserModel> users) {
+        this.users = users;
     }
 }
