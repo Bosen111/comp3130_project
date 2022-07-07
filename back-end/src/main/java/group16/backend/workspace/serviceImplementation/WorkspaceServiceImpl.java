@@ -1,5 +1,7 @@
 package group16.backend.workspace.serviceImplementation;
 
+import group16.backend.board.BoardModel;
+import group16.backend.board.BoardRepository;
 import group16.backend.user.entity.UserModel;
 import group16.backend.user.repository.UserRepository;
 import group16.backend.workspace.entity.Workspace;
@@ -18,6 +20,9 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BoardRepository boardRepository;
 
     @Override
     public void saveWorkspace(Workspace workspace) {
@@ -55,5 +60,11 @@ public class WorkspaceServiceImpl implements WorkspaceService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void getBoards(Long workspaceId) {
+        List<BoardModel> boards = null;
+        BoardModel board = boardRepository.findById(workspaceId).get();
     }
 }

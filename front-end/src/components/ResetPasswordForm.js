@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Button from "react-bootstrap/Button";
+import Button from '@mui/material/Button';
 
 function ResetPasswordForm(props){
 
@@ -46,7 +46,7 @@ function ResetPasswordForm(props){
                         <input type="password" required placeholder='Password' ref={newPwRef}/>
                     </div>
 
-                    <Button variant="primary" type="submit">Submit</Button>
+                    <Button type='submit' variant='contained' color='primary' sx={{ marginTop: '16px' }}>Submit</Button>
                 </form>
             </div>
         </div>

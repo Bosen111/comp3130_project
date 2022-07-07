@@ -23,15 +23,15 @@ public class BoardController {
     private BoardService boardService;
 
     @PostMapping("/createBoard")
-    public ResponseEntity<Map<String, Integer>> createBoard(@RequestBody BoardModel board) {
-        Integer id = boardService.createBoard(board);
+    public ResponseEntity<Map<String, Long>> createBoard(@RequestBody BoardModel board) {
+        Long id = boardService.createBoard(board);
         HttpStatus status = isNull(id) ? HttpStatus.CONFLICT : HttpStatus.CREATED;
         return status(status).body(singletonMap(ID, id));
     }
 
     @PutMapping("/updateBoard")
-    public ResponseEntity<Map<String, Integer>> updateBoard(@RequestBody BoardModel board) {
-        Integer id = boardService.createBoard(board);
+    public ResponseEntity<Map<String, Long>> updateBoard(@RequestBody BoardModel board) {
+        Long id = boardService.createBoard(board);
         HttpStatus status = isNull(id) ? HttpStatus.CONFLICT : HttpStatus.CREATED;
         return status(status).body(singletonMap(ID, id));
     }

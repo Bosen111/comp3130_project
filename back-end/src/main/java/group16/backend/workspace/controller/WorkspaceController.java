@@ -23,9 +23,15 @@ public class WorkspaceController {
 
     @CrossOrigin
     @DeleteMapping("/delete/{workspaceId}")
-    public String deleteTask(@PathVariable Long workspaceId){
+    public String deleteTask(@PathVariable Long workspaceId) {
         workspaceService.deleteWorkspace(workspaceId);
         return "Delete message send successfully";
+    }
+
+    @CrossOrigin
+    @GetMapping("/get/{workspaceId}")
+    public void getBoards(@PathVariable Long workspaceId) {
+        workspaceService.getBoards(workspaceId);
     }
 
     @CrossOrigin
