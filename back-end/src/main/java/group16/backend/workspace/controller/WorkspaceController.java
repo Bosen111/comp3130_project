@@ -1,5 +1,6 @@
 package group16.backend.workspace.controller;
 
+import group16.backend.board.BoardModel;
 import group16.backend.workspace.entity.Workspace;
 import group16.backend.workspace.service.WorkspaceService;
 import java.util.List;
@@ -22,7 +23,6 @@ public class WorkspaceController {
         return "Workspace saved successfully";
     }
 
-
     @CrossOrigin(origins = {"http://localhost:3000"})
     @DeleteMapping("/delete/{workspaceId}")
     public String deleteTask(@PathVariable Long workspaceId) {
@@ -44,11 +44,15 @@ public class WorkspaceController {
     }
 
     @CrossOrigin(origins = {"http://localhost:3000"})
-    @PutMapping("/assignBoard/{workspaceId}")
-    public Workspace updatWorkspace(@PathVariable Long workspaceId, @RequestParam Long boardId) {
-
+    @PutMapping("/assignBoard/{workspaceId}/{boardId}")
+    public Workspace updateWorkspace(@PathVariable Long workspaceId, @PathVariable Long boardId) {
         return workspaceService.updateBoard(workspaceId, boardId);
+    }
 
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @PutMapping("/getBoards/{workspaceId}")
+    public List<BoardModel> updateWorkspace(@PathVariable Long workspaceId) {
+        return workspaceService.getAllBoards(workspaceId);
     }
 
 }

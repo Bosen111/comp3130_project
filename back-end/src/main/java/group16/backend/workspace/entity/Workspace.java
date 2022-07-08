@@ -34,7 +34,7 @@ public class Workspace {
     private List<UserModel> users;
 
     @OneToMany(targetEntity = BoardModel.class)
-    @JoinColumn(name = "board_mapping_workspace")
+    @JoinColumn(name = "fk_workspaceId", referencedColumnName = "workspaceId")
     private List<BoardModel> boards;
 
     public Long getWorkspaceId() {
