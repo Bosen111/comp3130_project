@@ -1,4 +1,4 @@
-package group16.backend.board;
+package group16.backend.board.entity;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,7 +15,7 @@ public class BoardModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String name;
 
@@ -34,11 +34,11 @@ public class BoardModel {
 
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
