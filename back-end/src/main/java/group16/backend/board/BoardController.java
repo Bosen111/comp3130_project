@@ -24,16 +24,22 @@ public class BoardController {
 
     @PostMapping("/createBoard")
     public ResponseEntity<Map<String, Long>> createBoard(@RequestBody BoardModel board) {
-        Long id = boardService.createBoard(board);
+        long id = boardService.createBoard(board);
         HttpStatus status = isNull(id) ? HttpStatus.CONFLICT : HttpStatus.CREATED;
         return status(status).body(singletonMap(ID, id));
     }
 
     @PutMapping("/updateBoard")
     public ResponseEntity<Map<String, Long>> updateBoard(@RequestBody BoardModel board) {
-        Long id = boardService.createBoard(board);
+        long id = boardService.createBoard(board);
         HttpStatus status = isNull(id) ? HttpStatus.CONFLICT : HttpStatus.CREATED;
         return status(status).body(singletonMap(ID, id));
+    }
+
+    @DeleteMapping("/deleteBoard/{boardId}")
+    public String deleteBoard(@PathVariable long boardId){
+        boardService.deleteBoard(boardId);
+        return "Delete message send successfully";
     }
     
     @GetMapping("/getAll")

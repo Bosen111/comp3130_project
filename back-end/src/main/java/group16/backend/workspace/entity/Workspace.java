@@ -1,10 +1,9 @@
 package group16.backend.workspace.entity;
 
+import java.util.List;
+import javax.persistence.*;
 import group16.backend.board.BoardModel;
 import group16.backend.user.entity.UserModel;
-
-import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "workspace")
@@ -35,7 +34,7 @@ public class Workspace {
     private List<UserModel> users;
 
     @OneToMany(targetEntity = BoardModel.class)
-    @JoinColumn(name = "board_mapping")
+    @JoinColumn(name = "board_mapping_workspace")
     private List<BoardModel> boards;
 
     public Long getWorkspaceId() {
@@ -76,5 +75,13 @@ public class Workspace {
 
     public void setUsers(List<UserModel> users) {
         this.users = users;
+    }
+
+    public List<BoardModel> getBoards() {
+        return boards;
+    }
+
+    public void setBoards(List<BoardModel> boards) {
+        this.boards = boards;
     }
 }
