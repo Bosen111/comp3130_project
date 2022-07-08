@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import '../login.css';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Button from '@mui/material/Button';
 
 function LoginForm(props){
 
@@ -31,7 +30,7 @@ function LoginForm(props){
                         <p>Password: </p>
                         <input type="password" required placeholder='Password' ref={passwordRef}/>
                     </div>
-                    <Button variant="primary" type="submit">Submit</Button>
+                    <Button type='submit' variant='contained' color='primary' sx={{ marginTop: '16px' }}>Submit</Button>
                 </form>
             </div>
         </div>
