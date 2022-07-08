@@ -7,9 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+
+import group16.backend.board.BoardModel;
 import group16.backend.task.entity.TaskModel;
+import group16.backend.workspace.entity.Workspace;
 
 @Entity
 public class UserModel {
@@ -27,8 +31,15 @@ public class UserModel {
     private String securityAnswer;
     
     @OneToMany(targetEntity = TaskModel.class)
-    @JoinColumn(name = "task_mapping")
+    @JoinColumn(name = "task_mapping_user")
     private List<TaskModel> tasks;
+
+    @OneToMany(targetEntity = BoardModel.class)
+    @JoinColumn(name = "board_mapping_user")
+    private List<BoardModel> boards;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Workspace> workspaces;
 
     //Constructor
     public UserModel(String name, String email, String password, String securityAnswer) {
@@ -89,6 +100,21 @@ public class UserModel {
 
     public void setTasks(List<TaskModel> tasks) {
         this.tasks = tasks;
+    }
+
+    public List<BoardModel> getBoards() {
+        return boards;
+    }
+
+    public void setBoards(List<BoardModel> boards) {
+        this.boards = boards;
+    }
+    public List<Workspace> getWorkspaces() {
+        return workspaces;
+    }
+
+    public void setWorkspaces(List<Workspace> workspaces) {
+        this.workspaces = workspaces;
     }
     
 }
