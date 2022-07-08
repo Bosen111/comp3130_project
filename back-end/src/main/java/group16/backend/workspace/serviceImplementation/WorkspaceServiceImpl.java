@@ -105,4 +105,20 @@ public class WorkspaceServiceImpl implements WorkspaceService {
         }
         return updatedWorkspace;
     }
+
+    @Override
+    public List<BoardModel> getAllBoards(Long workspaceId) {
+        Optional<Workspace> workspace = workspaceRepo.findById(workspaceId);
+        List<BoardModel> boards = null;
+
+        try {
+            if (workspace.isPresent()) {
+                boards = workspace.get().getBoards();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return boards;
+    }
 }
