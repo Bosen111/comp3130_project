@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Button from "react-bootstrap/Button";
+import Button from '@mui/material/Button';
 
 function RegisterForm(props){
 
@@ -52,7 +52,7 @@ function RegisterForm(props){
                         <input type="text" required placeholder='Answer' ref={secAnswerRef}/>
                     </div>
 
-                    <Button variant="primary" type="submit">Submit</Button>
+                    <Button variant="contained">Submit</Button>
                 </form>
             </div>
         </div>
