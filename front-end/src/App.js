@@ -9,6 +9,7 @@ import Footer from "./components/footer";
 import { Container } from '@mui/material';
 import Boards from './pages/Boards';
 import CreateBoard from './pages/CreateBoard';
+import Workspace from "./components/Workspace";
 
 function App() {
   return (
@@ -29,12 +30,15 @@ function App() {
           <Route path="/forgotPw">
             <ForgotPw/>
           </Route>
-          <Route path={['/', '/boards']} exact>
+          <Route path="/boards" exact>
             <Boards />
           </Route>
           <Route path='/create-board' exact>
             <CreateBoard />
           </Route>
+            <Route path='/Workspace' exact>
+                <Workspace />
+            </Route>
         </Switch>
         </Container>
       </BrowserRouter>
