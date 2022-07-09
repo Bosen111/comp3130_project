@@ -47,12 +47,9 @@ export default function Workspace(){
 
     return(
         <div >
-            <Container sx={{marginTop:"20%"}}>
-                <div role="presentation"style={{margin:"5ch 0"}} >
-                    <Breadcrumbs aria-label="breadcrumb">
-                        <Typography color="text.primary" variant="h3">Workspace</Typography>
-                    </Breadcrumbs>
-                </div>
+            <Container>
+                < Typography variant="h2" sx={{margin:"2ch 0"}}>Create Workspace</Typography>
+
                 <div style={{marginBottom: "1%"}}><TextField
                     id="standard-basic"
                     placeholder="Workspace Name"

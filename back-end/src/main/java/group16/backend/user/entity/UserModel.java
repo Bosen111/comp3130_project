@@ -36,8 +36,8 @@ public class UserModel {
     @JoinColumn(name = "board_mapping_user")
     private List<BoardModel> boards;
 
-    @ManyToMany(mappedBy = "users")
-    private List<Workspace> workspaces;
+//    @ManyToMany(mappedBy = "users")
+//    private List<Workspace> workspaces;
 
     //Constructor
     public UserModel(String name, String email, String password, String securityAnswer) {
@@ -108,11 +108,11 @@ public class UserModel {
         this.boards = boards;
     }
     public List<Workspace> getWorkspaces() {
-        return workspaces;
+        return null;
     }
 
-    public void setWorkspaces(List<Workspace> workspaces) {
-        this.workspaces = workspaces;
-    }
+//    public void setWorkspaces(List<Workspace> workspaces) {
+//        this.workspaces = workspaces;
+//    }
     
 }

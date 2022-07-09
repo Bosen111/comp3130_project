@@ -15,9 +15,8 @@ function Navigation(){
                         <Nav.Link href="/login">Login</Nav.Link>
                         <Nav.Link href="/register">Register</Nav.Link>
                         <Nav.Link href="/forgotPw">Forgot-Password</Nav.Link>
-                        <Nav.Link href="/create-board">Create-Board</Nav.Link>
-                        <Nav.Link href="/boards">Boards</Nav.Link>
                         <Nav.Link href="/Workspace">Workspace</Nav.Link>
+                        <Nav.Link href="/Workspaces">Workspaces</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

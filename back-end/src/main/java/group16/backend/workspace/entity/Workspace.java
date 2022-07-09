@@ -2,6 +2,8 @@ package group16.backend.workspace.entity;
 
 import java.util.List;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.*;
 import group16.backend.board.BoardModel;
 import group16.backend.user.entity.UserModel;
 
@@ -70,13 +72,14 @@ public class Workspace {
     }
 
     public List<UserModel> getUsers() {
-        return users;
+        return null;
     }
 
     public void setUsers(List<UserModel> users) {
-        this.users = users;
+//        this.users = users;
     }
 
+    @JsonManagedReference
     public List<BoardModel> getBoards() {
         return boards;
     }

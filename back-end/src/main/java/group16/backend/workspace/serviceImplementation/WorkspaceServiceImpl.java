@@ -1,5 +1,6 @@
 package group16.backend.workspace.serviceImplementation;
 
+import com.fasterxml.jackson.annotation.*;
 import group16.backend.board.BoardModel;
 import group16.backend.board.BoardRepository;
 import group16.backend.board.BoardService;
@@ -71,6 +72,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     }
 
     @Override
+    @JsonManagedReference
     public List<Workspace> getWorkspace(){
         return workspaceRepo.findAll();
     }
