@@ -36,6 +36,7 @@ public class BoardController {
         return status(status).body(singletonMap(ID, id));
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @DeleteMapping("/deleteBoard/{boardId}")
     public String deleteBoard(@PathVariable long boardId){
         boardService.deleteBoard(boardId);

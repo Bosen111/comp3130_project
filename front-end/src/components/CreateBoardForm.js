@@ -1,5 +1,6 @@
 import { Button, TextField } from '@mui/material';
 import React, { useRef } from 'react';
+import Typography from "@mui/material/Typography";
 
 function CreateBoardForm(props) {
     const boardNameRef = useRef();
@@ -20,7 +21,7 @@ function CreateBoardForm(props) {
 
     return (
         <section style={{ marginTop: '32px' }}>
-            <h1>Create New Board</h1>
+            < Typography variant="h2" sx={{margin:"2ch 0"}}>Create Board</Typography>
             <form onSubmit={createBoard}>
                 <TextField
                     id='boardName'

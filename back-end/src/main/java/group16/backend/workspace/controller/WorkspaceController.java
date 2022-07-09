@@ -1,5 +1,6 @@
 package group16.backend.workspace.controller;
 
+import com.fasterxml.jackson.annotation.*;
 import group16.backend.board.BoardModel;
 import group16.backend.workspace.entity.Workspace;
 import group16.backend.workspace.service.WorkspaceService;
@@ -7,10 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-
 @RestController
-@RequestMapping("/workspace")
+@RequestMapping("workspace")
 public class WorkspaceController {
 
     @Autowired
@@ -37,6 +36,8 @@ public class WorkspaceController {
         return "Adding user message send successfully";
     }
     
+    @JsonManagedReference
+    @JsonIgnore
     @CrossOrigin(origins = {"http://localhost:3000"})
     @GetMapping("/getAll")
     public List<Workspace> getWorkspace() {
@@ -51,7 +52,7 @@ public class WorkspaceController {
 
     @CrossOrigin(origins = {"http://localhost:3000"})
     @PutMapping("/getBoards/{workspaceId}")
-    public List<BoardModel> updateWorkspace(@PathVariable Long workspaceId) {
+    public List<BoardModel> getBoards(@PathVariable Long workspaceId) {
         return workspaceService.getAllBoards(workspaceId);
     }
 
