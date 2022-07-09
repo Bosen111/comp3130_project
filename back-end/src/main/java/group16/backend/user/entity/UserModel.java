@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import group16.backend.board.BoardModel;
+import group16.backend.board.entity.BoardModel;
 import group16.backend.task.entity.TaskModel;
 import group16.backend.workspace.entity.Workspace;
 

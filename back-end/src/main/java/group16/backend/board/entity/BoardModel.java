@@ -1,4 +1,4 @@
-package group16.backend.board;
+package group16.backend.board.entity;
 import java.util.List;
 
 import javax.persistence.CascadeType;

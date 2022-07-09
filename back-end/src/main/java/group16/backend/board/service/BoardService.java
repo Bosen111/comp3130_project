@@ -1,5 +1,7 @@
-package group16.backend.board;
+package group16.backend.board.service;
 
+import group16.backend.board.entity.BoardModel;
+import group16.backend.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ import java.util.Optional;
 public class BoardService {
 
     @Autowired
-    private BoardRepository boardRepository;
+    BoardRepository boardRepository;
 
     public Long createBoard(BoardModel board) {
         return boardRepository.save(board).getId();

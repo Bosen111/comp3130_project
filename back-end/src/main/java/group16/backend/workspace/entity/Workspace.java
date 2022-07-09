@@ -4,7 +4,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.*;
-import group16.backend.board.BoardModel;
+import group16.backend.board.entity.BoardModel;
 import group16.backend.user.entity.UserModel;
 
 @Entity
@@ -28,12 +28,12 @@ public class Workspace {
 
     private String description;
 
-    @ManyToMany
-    @JoinTable (name = "users_workspaces",
-        joinColumns = @JoinColumn(name = "workspaceId"),
-        inverseJoinColumns = @JoinColumn(name = "id")
-    )
-    private List<UserModel> users;
+//    @ManyToMany
+//    @JoinTable (name = "users_workspaces",
+//        joinColumns = @JoinColumn(name = "workspaceId"),
+//        inverseJoinColumns = @JoinColumn(name = "id")
+//    )
+//    private List<UserModel> users;
 
     @OneToMany(targetEntity = BoardModel.class)
     @JoinColumn(name = "fk_workspaceId", referencedColumnName = "workspaceId")

@@ -1,5 +1,7 @@
-package group16.backend.board;
+package group16.backend.board.controller;
 
+import group16.backend.board.entity.BoardModel;
+import group16.backend.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
