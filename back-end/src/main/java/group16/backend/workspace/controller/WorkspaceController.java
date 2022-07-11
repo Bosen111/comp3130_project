@@ -45,7 +45,7 @@ public class WorkspaceController {
 
     @CrossOrigin(origins = {"http://localhost:3000"})
     @PutMapping("/assignBoard/{workspaceId}")
-    public Workspace updatWorkspace(@PathVariable Long workspaceId, @RequestParam Long boardId) {
+    public Workspace updateBoard(@PathVariable Long workspaceId, @RequestParam Long boardId) {
 
         return workspaceService.updateBoard(workspaceId, boardId);
 
