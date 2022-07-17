@@ -22,7 +22,7 @@ public class BoardModel {
     private String description;
 
     @OneToMany(targetEntity = TaskModel.class)
-    @JoinColumn(name = "task_mapping")
+    @JoinColumn(name = "task_mapping_board")
     private List<TaskModel> tasks;
 
     public BoardModel(String name, String description) {

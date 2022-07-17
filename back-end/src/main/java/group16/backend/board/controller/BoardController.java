@@ -2,6 +2,7 @@ package group16.backend.board.controller;
 
 import group16.backend.board.entity.BoardModel;
 import group16.backend.board.service.BoardService;
+import group16.backend.user.entity.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,14 @@ public class BoardController {
     public String deleteBoard(@PathVariable long boardId){
         boardService.deleteBoard(boardId);
         return "Delete message send successfully";
+    }
+
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @PutMapping("/assignTask/{boardId}")
+    public BoardModel updateTask(@PathVariable Long boardId, @RequestParam Long taskId) {
+
+        return boardService.updateTask(boardId, taskId);
+
     }
     
     @GetMapping("/getAll")
