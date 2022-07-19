@@ -2,6 +2,7 @@ package group16.backend.board.controller;
 
 import group16.backend.board.entity.BoardModel;
 import group16.backend.board.service.BoardService;
+import group16.backend.task.entity.TaskModel;
 import group16.backend.user.entity.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,5 +60,10 @@ public class BoardController {
         return boardService.getBoards();
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @GetMapping("/getAllTasks/{boardId}")
+    public List<TaskModel> getTasks(@PathVariable Long boardId) {
+        return boardService.getAllTasksInBoard(boardId);
+    }
 }
 

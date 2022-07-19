@@ -79,4 +79,10 @@ public class BoardService {
         return boardModel;
 
     }
+
+    public List<TaskModel> getAllTasksInBoard(Long boardId) {
+        BoardModel boardModel = findBoardByID(boardId);
+
+        return boardModel.getTasks();
+    }
 }
