@@ -10,7 +10,9 @@ import { Container } from '@mui/material';
 import Boards from './pages/Boards';
 import CreateBoard from './pages/CreateBoard';
 import Workspace from "./components/Workspace";
-import Workspaces from "./pages/workspaces"
+import Workspaces from "./pages/workspaces";
+import CreateTask from "./pages/CreateTask";
+import ViewTasks from "./pages/ViewTasks";
 function App() {
   return (
       <React.Fragment>
@@ -36,12 +38,18 @@ function App() {
           <Route path='/create-board' exact>
             <CreateBoard />
           </Route>
-            <Route path='/Workspace' exact>
-                <Workspace />
-            </Route>
-            <Route path='/Workspaces' exact>
-                <Workspaces />
-            </Route>
+          <Route path='/Workspace' exact>
+              <Workspace />
+          </Route>
+          <Route path='/Workspaces' exact>
+              <Workspaces />
+          </Route>
+          <Route path='/createTask' exact>
+            <CreateTask/>
+          </Route>
+          <Route path='/viewTasks' exact>
+            <ViewTasks/>
+          </Route>
         </Switch>
         </Container>
       </BrowserRouter>

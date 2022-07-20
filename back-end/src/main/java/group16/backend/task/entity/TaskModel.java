@@ -14,9 +14,15 @@ public class TaskModel {
 
     private String taskName;
 
+    private String completionDate;
+
+    private String status;
+
     //constructor
-    public TaskModel(String taskName) {
+    public TaskModel(String taskName, String completionDate, String status) {
         this.taskName = taskName;
+        this.completionDate = completionDate;
+        this.status = status;
     }
 
     public TaskModel() {
@@ -38,4 +44,12 @@ public class TaskModel {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getCompletionDate() { return completionDate; }
+
+    public void setCompletionDate(String completionDate) { this.completionDate = completionDate; }
+
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) { this.status = status; }
 }

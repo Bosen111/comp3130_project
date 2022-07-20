@@ -37,8 +37,13 @@ public class TaskController {
     }
 
     @GetMapping("/getAll")
+    @CrossOrigin(origins = {"http://localhost:3000"})
     public List<TaskModel> getAllTasks() {
         return taskService.getAllTasks();
     }
+
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @PostMapping("/setStatus/{taskId}")
+    public TaskModel updateTaskStatus(@PathVariable Long taskId, @RequestBody String newStatus){ return taskService.updateTaskStatus(taskId, newStatus); }
     
 }

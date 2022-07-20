@@ -2,6 +2,7 @@ import React ,{useState} from 'react';
 import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import axios from "axios";
+import {Nav} from "react-bootstrap";
 
 function ViewBoards(props) {
     const [isError, setError] = useState(false);
@@ -31,6 +32,7 @@ function ViewBoards(props) {
             < Typography variant="h2" sx={{margin:"2ch 0"}}>View Boards</Typography>
             <Grid container spacing={2}>
                 {props.boards.map((board) => {
+                    let taskHref = "/viewTasks?board=" + board.id;
                     return (
                         <Grid item xs={12} sm={12} md={4} lg={4} key={board.id}>
                             <Card elevation={6}>
@@ -45,7 +47,7 @@ function ViewBoards(props) {
                                         {board.description}
                                     </Typography>
                                     <Button variant='contained' sx={{ marginTop: '16px' }}>
-                                        View All Tasks
+                                        <Nav.Link href={taskHref} style={{color:"white"}}>View Tasks</Nav.Link>
                                     </Button>
                                 </CardContent>
                             </Card>
