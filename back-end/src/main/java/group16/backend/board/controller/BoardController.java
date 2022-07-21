@@ -65,5 +65,11 @@ public class BoardController {
     public List<TaskModel> getTasks(@PathVariable Long boardId) {
         return boardService.getAllTasksInBoard(boardId);
     }
+
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @GetMapping("/getById/{boardId}")
+    public BoardModel getBoardById(@PathVariable Long boardId){
+        return boardService.findBoardByID(boardId);
+    }
 }
 
