@@ -1,27 +1,27 @@
 package group16.backend.workspace.controller;
 
+import com.fasterxml.jackson.annotation.*;
 import group16.backend.workspace.entity.Workspace;
-import group16.backend.workspace.service.WorkspaceService;
+
 import java.util.List;
+
+import group16.backend.workspace.service.WorkspaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-
 @RestController
-@RequestMapping("/workspace")
+@RequestMapping("workspace")
 public class WorkspaceController {
 
     @Autowired
     WorkspaceService workspaceService;
 
     @CrossOrigin(origins = {"http://localhost:3000"})
-    @PostMapping(path = "/add")
+    @PostMapping(path = "/add", consumes = {"*/*"})
     public String addWorkspace(@RequestBody Workspace workspace) {
         workspaceService.saveWorkspace(workspace);
         return "Workspace saved successfully";
     }
-
 
     @CrossOrigin(origins = {"http://localhost:3000"})
     @DeleteMapping("/delete/{workspaceId}")
@@ -36,19 +36,22 @@ public class WorkspaceController {
         workspaceService.assignUser(userId, workspaceId);
         return "Adding user message send successfully";
     }
-    
     @CrossOrigin(origins = {"http://localhost:3000"})
     @GetMapping("/getAll")
     public List<Workspace> getWorkspace() {
         return workspaceService.getWorkspace();
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000"})
-    @PutMapping("/assignBoard/{workspaceId}")
-    public Workspace updateBoard(@PathVariable Long workspaceId, @RequestParam Long boardId) {
-
-        return workspaceService.updateBoard(workspaceId, boardId);
-
-    }
+//    @CrossOrigin(origins = {"http://localhost:3000"})
+//    @PutMapping("/assignBoard/{workspaceId}/{boardId}")
+//    public Workspace updateWorkspace(@PathVariable Long workspaceId, @PathVariable Long boardId) {
+//        return workspaceService.updateBoard(workspaceId, boardId);
+//    }
+//
+//    @CrossOrigin(origins = {"http://localhost:3000"})
+//    @PutMapping("/getBoards/{workspaceId}")
+//    public List<BoardModel> getBoards(@PathVariable Long workspaceId) {
+//        return workspaceService.getAllBoards(workspaceId);
+//    }
 
 }

@@ -47,51 +47,44 @@ export default function Workspace(){
 
     return(
         <div >
-            <Container sx={{marginTop:"20%"}}>
-                <div role="presentation"style={{margin:"5ch 0"}} >
-                    <Breadcrumbs aria-label="breadcrumb">
-                        <Typography color="text.primary" variant="h3">Workspace</Typography>
-                    </Breadcrumbs>
-                </div>
-            <Grid container spacing={2}>
-                <Grid item xs={8}>
-                    <div style={{marginBottom: "1%"}}><TextField
-                        id="standard-basic"
-                        placeholder="Workspace Name"
-                        label="Standard"
-                        size="medium"
-                        fullWidth
-                        variant="outlined"
-                        required
-                        inputRef={workspace_nameRef}
-                    /></div>
+            <Container>
+                < Typography variant="h2" sx={{margin:"2ch 0"}}>Create Workspace</Typography>
 
-                    <div style={{marginBottom: "1%"}}><TextField
-                        id="standard-basic"
-                        placeholder="Workspace Type"
-                        label="Standard"
-                        size="medium"
-                        fullWidth
-                        variant="outlined"
-                        required
-                        inputRef={workspace_typeRef}
-                    /></div>
+                <div style={{marginBottom: "1%"}}><TextField
+                    id="standard-basic"
+                    placeholder="Workspace Name"
+                    label="Standard"
+                    size="medium"
+                    fullWidth
+                    variant="outlined"
+                    required
+                    inputRef={workspace_nameRef}
+                /></div>
 
-                    <div style={{marginBottom: "1%"}}><TextField
-                        id="standard-multiline-static"
-                        placeholder="Description"
-                        label="Multiline"
-                        multiline
-                        rows={4}
-                        fullWidth
-                        variant="outlined"
-                        required
-                        inputRef={workspace_descripRef}
-                    /></div>
+                <div style={{marginBottom: "1%"}}><TextField
+                    id="standard-basic"
+                    placeholder="Workspace Type"
+                    label="Standard"
+                    size="medium"
+                    fullWidth
+                    variant="outlined"
+                    required
+                    inputRef={workspace_typeRef}
+                /></div>
 
-                    <Button variant="contained" onClick={submitHandler}> Submit </Button>
-                </Grid>
-            </Grid>
+                <div style={{marginBottom: "1%"}}><TextField
+                    id="standard-multiline-static"
+                    placeholder="Description"
+                    label="Multiline"
+                    multiline
+                    rows={4}
+                    fullWidth
+                    variant="outlined"
+                    required
+                    inputRef={workspace_descripRef}
+                /></div>
+
+                <Button variant="contained" onClick={submitHandler}> Submit </Button>
             </Container>
         </div>
     )
