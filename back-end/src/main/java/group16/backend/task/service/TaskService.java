@@ -32,6 +32,26 @@ public class TaskService {
 
     }
 
+    public TaskModel updateTaskStatus(Long taskId, String newStatus) {
+
+        TaskModel updatedTask = null;
+        Optional<TaskModel> task = null;
+
+        try {
+            task = taskRepository.findById(taskId);
+            if(task.isPresent()) {
+                TaskModel taskModel = task.get();
+
+                taskModel.setStatus(newStatus);
+
+                updatedTask = taskRepository.save(taskModel);
+            }
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return updatedTask;
+    }
+
     public void deleteTask(Long taskId) {
         taskRepository.deleteById(taskId);
     }
