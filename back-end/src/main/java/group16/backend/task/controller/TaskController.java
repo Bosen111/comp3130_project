@@ -36,6 +36,12 @@ public class TaskController {
         taskService.deleteTask(taskId);
     }
 
+    @GetMapping("/getById/{taskId}")
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    public TaskModel getTaskById(@PathVariable Long taskId){
+        return taskService.findTaskByID(taskId);
+    }
+
     @GetMapping("/getAll")
     @CrossOrigin(origins = {"http://localhost:3000"})
     public List<TaskModel> getAllTasks() {

@@ -31,7 +31,7 @@ function RegisterForm(props){
         <div className="show-content">
             <div className="login-wrapper">
                 <form onSubmit={submitHandler}>
-                <div className="input-item">
+                    <div className="input-item">
                         <p>Name: </p>
                         <input type="text" required placeholder='Name' ref={nameRef}/>
                     </div>
@@ -52,7 +52,8 @@ function RegisterForm(props){
                         <input type="text" required placeholder='Answer' ref={secAnswerRef}/>
                     </div>
 
-                    <Button variant="contained">Submit</Button>
+                    <Button type='submit' variant='contained' color='primary' sx={{ marginTop: '16px' }}>Submit</Button>
+                    <br/><br/>
                 </form>
             </div>
         </div>

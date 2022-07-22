@@ -5,15 +5,13 @@ import Typography from "@mui/material/Typography";
 function CreateTaskForm(props) {
     const taskNameRef = useRef();
     const taskDateRef = useRef();
-    var taskStatusRef = document.getElementById("taskStatus");
 
     function createTask(e) {
         e.preventDefault();
+        var taskStatusRef = document.getElementById("taskStatus");
         const taskName = taskNameRef.current.value;
         const taskDate = taskDateRef.current.value;
         const taskStatus = taskStatusRef.value;
-
-        console.log(taskStatus);
 
         const task = {
             taskName: taskName,
@@ -21,8 +19,18 @@ function CreateTaskForm(props) {
             status: taskStatus
         };
 
-        props.createTask(task);
+        if(validateDate(taskDate))
+            props.createTask(task);
+        else{
+            alert("Invalid date field");
+        }
     };
+
+    // taken from https://stackoverflow.com/questions/15196451/regular-expression-to-validate-datetime-format-mm-dd-yyyy
+    function validateDate(taskDate) {
+        var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
+        return date_regex.test(taskDate);
+    }
 
     return (
         <section style={{ marginTop: '32px' }}>
@@ -56,6 +64,7 @@ function CreateTaskForm(props) {
                     Create Task
                 </Button>
             </form>
+            < Typography variant="p" sx={{margin:"2ch 0"}}>You may need to refresh after creating your task if you don't see it right away</Typography>
         </section>
     );
 };

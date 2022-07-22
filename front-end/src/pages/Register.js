@@ -23,7 +23,7 @@ function Register(){
     }
 
     return(
-        <div>
+        <div className="tabs-content">
             <h1>Registration Page</h1>
             <RegisterForm registerUser={registerUserHandler}/>
             {isError? <p class="redText">User with this Email already exists</p> : '' }
