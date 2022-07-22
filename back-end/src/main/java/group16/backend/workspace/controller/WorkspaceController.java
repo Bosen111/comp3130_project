@@ -1,6 +1,7 @@
 package group16.backend.workspace.controller;
 
 import com.fasterxml.jackson.annotation.*;
+import group16.backend.board.entity.BoardModel;
 import group16.backend.workspace.entity.Workspace;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class WorkspaceController {
     WorkspaceService workspaceService;
 
     @CrossOrigin(origins = {"http://localhost:3000"})
-    @PostMapping(path = "/add", consumes = {"*/*"})
+    @PostMapping(path = "/add")
     public String addWorkspace(@RequestBody Workspace workspace) {
         workspaceService.saveWorkspace(workspace);
         return "Workspace saved successfully";
@@ -30,12 +31,13 @@ public class WorkspaceController {
         return "Delete message send successfully";
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000"})
-    @PutMapping("/assignUser/{workspaceId}/{userId}")
-    public String assignUser(@PathVariable Long userId, @PathVariable Long workspaceId) {
-        workspaceService.assignUser(userId, workspaceId);
-        return "Adding user message send successfully";
-    }
+//    @CrossOrigin(origins = {"http://localhost:3000"})
+//    @PutMapping("/assignUser/{workspaceId}/{userId}")
+//    public String assignUser(@PathVariable Long userId, @PathVariable Long workspaceId) {
+//        workspaceService.assignUser(userId, workspaceId);
+//        return "Adding user message send successfully";
+//    }
+
     @CrossOrigin(origins = {"http://localhost:3000"})
     @GetMapping("/getAll")
     public List<Workspace> getWorkspace() {

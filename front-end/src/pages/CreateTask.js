@@ -30,9 +30,11 @@ function CreateTask() {
             })
     }
 
-    return (
-        <CreateTaskForm createTask={createTaskHandler} />
-    );
+    if (localStorage.getItem("logState") != null) {
+        return (
+            <CreateTaskForm createTask={createTaskHandler}/>
+        );
+    }
 };
 
 export default CreateTask;

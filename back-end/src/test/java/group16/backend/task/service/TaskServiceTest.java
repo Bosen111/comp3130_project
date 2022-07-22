@@ -223,6 +223,19 @@ class TaskServiceTest {
     }
 
     @Test
+    void updateTaskStatus(){
+        TaskModel task = new TaskModel();
+        task.setTaskName("test");
+        long i = Long.valueOf(12345678910L);
+        task.setId(i);
+        taskService.taskRepository = taskRepository;
+        taskService.createTask(task);
+        TaskModel tm = taskService.updateTaskStatus(i,"testing");
+
+        assertEquals(tm.getId(),task.getId());
+    }
+
+    @Test
     void deleteTask() {
         TaskModel task = new TaskModel();
         task.setTaskName("test");

@@ -17,20 +17,30 @@ function Login(){
             url: '/user/login',
             data: user,
         })
-        .then(() => history.replace('/home'))
+        .then((response) => {
+            if (response.status === 200) {
+                console.log(response)
+                localStorage.setItem("logState", JSON.stringify(response.data))
+                history.replace('/workspace')
+                window.location.reload();
+            }
+        })
         .catch(function (error) {
             console.log(error);
             setError(true);
         });
     }
 
-    return(
-        <div className="tabs-content">
-            <h1>Login Page</h1>
-            <LoginForm loginUser={loginUserHandler}/>
-            {isError? <p class="redText">Invalid Credentials</p> : '' }
-        </div>
-    );
+    if (localStorage.getItem("logState") == null) {
+        return (
+            <div className="tabs-content">
+                <h1>Login Page</h1>
+                <LoginForm loginUser={loginUserHandler}/>
+                {isError ? <p class="redText">Invalid Credentials</p> : ''}
+            </div>
+        );
+    }
+
 }
 
 export default Login;

@@ -15,6 +15,7 @@ import CreateTask from "./pages/CreateTask";
 import ViewTasks from "./pages/ViewTasks";
 import AssignMb from "./pages/AssignMembers";
 import ChangeStatus from "./pages/Status";
+import Logout from "./pages/Logout";
 function App() {
   return (
       <React.Fragment>
@@ -57,6 +58,9 @@ function App() {
           </Route>
           <Route path='/Status' exact>
             <ChangeStatus/>
+          </Route>
+          <Route path='/Logout' exact>
+            <Logout/>
           </Route>
         </Switch>
         </Container>

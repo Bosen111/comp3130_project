@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-import static group16.backend.constant.ApplicationConstant.ID;
 import static io.github.handsomecoder.utils.ObjectUtils.isNull;
 import static java.util.Collections.singletonMap;
 import static org.springframework.http.ResponseEntity.status;
@@ -25,6 +24,8 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
+
+    public static final String ID = "id";
 
     @PostMapping("/createBoard")
     public ResponseEntity<Map<String, Long>> createBoard(@RequestBody BoardModel board) {
