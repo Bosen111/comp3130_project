@@ -3,6 +3,9 @@ package group16.backend.board.service;
 import group16.backend.board.entity.BoardModel;
 import group16.backend.board.repository.BoardRepository;
 import group16.backend.board.service.BoardService;
+import group16.backend.task.entity.TaskModel;
+import group16.backend.task.repository.TaskRepository;
+import group16.backend.task.service.TaskService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -121,7 +124,25 @@ class BoardServiceTest {
 
         @Override
         public Optional<BoardModel> findById(Long along) {
-            return Optional.empty();
+            long i = Long.valueOf(12345678910L);
+            if (along == i){
+                BoardModel boardModel = new BoardModel("Board1","Testing the board class");
+                boardModel.setId(i);
+                List<TaskModel> q = new ArrayList<>();
+                TaskModel task = new TaskModel();
+                task.setTaskName("test");
+                task.setId(i);
+                q.add(task);
+                TaskModel task2 = new TaskModel();
+                task2.setTaskName("test");
+                long j = Long.valueOf(123456789L);
+                task2.setId(j);
+                q.add(task2);
+                boardModel.setTasks(q);
+
+                return Optional.of(boardModel);
+            }
+            return null;
         }
 
         @Override
@@ -185,8 +206,191 @@ class BoardServiceTest {
         }
     };
 
+    private TaskRepository taskRepository = new TaskRepository() {
+        @Override
+        public List<TaskModel> findAll() {
+            List<TaskModel> l = new ArrayList<>();
+            TaskModel task = new TaskModel();
+            task.setTaskName("test");
+            long i = Long.valueOf(12345678910L);
+            task.setId(i);
+            l.add(task);
+            TaskModel task2 = new TaskModel();
+            task2.setTaskName("test");
+            long j = Long.valueOf(123456789L);
+            task2.setId(j);
+            l.add(task2);
+            return l;
+        }
+
+        @Override
+        public List<TaskModel> findAll(Sort sort) {
+            return null;
+        }
+
+        @Override
+        public List<TaskModel> findAllById(Iterable<Long> longs) {
+            return null;
+        }
+
+        @Override
+        public <S extends TaskModel> List<S> saveAll(Iterable<S> entities) {
+            return null;
+        }
+
+        @Override
+        public void flush() {
+
+        }
+
+        @Override
+        public <S extends TaskModel> S saveAndFlush(S entity) {
+            return null;
+        }
+
+        @Override
+        public <S extends TaskModel> List<S> saveAllAndFlush(Iterable<S> entities) {
+            return null;
+        }
+
+        @Override
+        public void deleteAllInBatch(Iterable<TaskModel> entities) {
+
+        }
+
+        @Override
+        public void deleteAllByIdInBatch(Iterable<Long> longs) {
+
+        }
+
+        @Override
+        public void deleteAllInBatch() {
+
+        }
+
+        @Override
+        public TaskModel getOne(Long aLong) {
+            return null;
+        }
+
+        @Override
+        public TaskModel getById(Long aLong) {
+            return null;
+        }
+
+        @Override
+        public TaskModel getReferenceById(Long aLong) {
+            return null;
+        }
+
+        @Override
+        public <S extends TaskModel> List<S> findAll(Example<S> example) {
+            return null;
+        }
+
+        @Override
+        public <S extends TaskModel> List<S> findAll(Example<S> example, Sort sort) {
+            return null;
+        }
+
+        @Override
+        public Page<TaskModel> findAll(Pageable pageable) {
+            return null;
+        }
+
+        @Override
+        public <S extends TaskModel> S save(S entity) {
+            return entity;
+        }
+
+        @Override
+        public Optional<TaskModel> findById(Long aLong) {
+            TaskModel task = new TaskModel();
+            task.setTaskName("test");
+            long i = Long.valueOf(12345678910L);
+            task.setId(i);
+
+            if(task.getId().equals(aLong)) {
+                return Optional.of(task);
+            }
+            return Optional.empty();
+        }
+
+        @Override
+        public boolean existsById(Long aLong) {
+            return false;
+        }
+
+        @Override
+        public long count() {
+            return 0;
+        }
+
+        @Override
+        public void deleteById(Long aLong) {
+
+        }
+
+        @Override
+        public void delete(TaskModel entity) {
+
+        }
+
+        @Override
+        public void deleteAllById(Iterable<? extends Long> longs) {
+
+        }
+
+        @Override
+        public void deleteAll(Iterable<? extends TaskModel> entities) {
+
+        }
+
+        @Override
+        public void deleteAll() {
+
+        }
+
+        @Override
+        public <S extends TaskModel> Optional<S> findOne(Example<S> example) {
+            return Optional.empty();
+        }
+
+        @Override
+        public <S extends TaskModel> Page<S> findAll(Example<S> example, Pageable pageable) {
+            return null;
+        }
+
+        @Override
+        public <S extends TaskModel> long count(Example<S> example) {
+            return 0;
+        }
+
+        @Override
+        public <S extends TaskModel> boolean exists(Example<S> example) {
+            return false;
+        }
+
+        @Override
+        public <S extends TaskModel, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+            return null;
+        }
+    };
+
+
+    private TaskService taskService = new TaskService(){
+        @Override
+        public TaskModel findTaskByID(Long taskId) {
+            TaskModel task = new TaskModel();
+            task.setTaskName("test");
+            long i = Long.valueOf(12345678910L);
+            task.setId(i);
+            return task;
+        }
+    };
 
     private BoardService boardService = new BoardService();
+
 
     @Test
     void createBoard() {
@@ -217,6 +421,67 @@ class BoardServiceTest {
             for (int x = 0; x < getBoardsList.size(); x++) {
                 assertEquals(bmList.get(x).getId(),getBoardsList.get(x).getId());
             }
+        }
+    }
+
+    @Test
+    void deleteBoard(){
+        BoardModel boardModel = new BoardModel("Board1","Testing the board class");
+        boardService.boardRepository = boardRepository;
+        Long l = Long.valueOf(123456L);
+        boardModel.setId(l);
+        boardService.createBoard(boardModel);
+        boardService.deleteBoard(boardModel.getId());
+        assertNull(boardService.boardRepository.findById(boardModel.getId()));
+    }
+
+    @Test
+    void updateTask(){
+        BoardModel boardModel = new BoardModel("Board1","Testing the board class");
+        long i = Long.valueOf(12345678910L);
+        boardModel.setId(i);
+        boardService.boardRepository = boardRepository;
+        boardService.taskService = taskService;
+        boardService.createBoard(boardModel);
+        TaskModel task = new TaskModel();
+        task.setTaskName("test");
+        task.setId(i);
+        BoardModel bm = boardService.updateTask(i,task.getId());
+        assertEquals(bm.getId(),boardModel.getId());
+    }
+
+    @Test
+    void findBoardByID(){
+        BoardModel boardModel = new BoardModel("Board1","Testing the board class");
+        long i = Long.valueOf(12345678910L);
+        boardModel.setId(i);
+        boardService.boardRepository = boardRepository;
+        BoardModel bm = boardService.findBoardByID(i);
+        assertEquals(boardModel.getName(),bm.getName());
+    }
+
+    @Test
+    void getAllTasksInBoard(){
+        BoardModel boardModel = new BoardModel("Board1","Testing the board class");
+        boardService.boardRepository = boardRepository;
+        boardService.createBoard(boardModel);
+        List<TaskModel> q = new ArrayList<>();
+        TaskModel task = new TaskModel();
+        task.setTaskName("test");
+        long i = Long.valueOf(12345678910L);
+        task.setId(i);
+        q.add(task);
+        TaskModel task2 = new TaskModel();
+        task2.setTaskName("test");
+        long j = Long.valueOf(123456789L);
+        task2.setId(j);
+        q.add(task2);
+        boardModel.setTasks(q);
+
+        List<TaskModel> check = boardService.getAllTasksInBoard(i);
+
+        for(int x = 0; x < q.size(); x++){
+            assertEquals(check.get(x).getId(),q.get(x).getId());
         }
     }
 }
