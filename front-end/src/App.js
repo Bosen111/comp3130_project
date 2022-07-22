@@ -13,6 +13,7 @@ import Workspace from "./components/Workspace";
 import Workspaces from "./pages/workspaces";
 import CreateTask from "./pages/CreateTask";
 import ViewTasks from "./pages/ViewTasks";
+import Members from "./pages/Members";
 function App() {
   return (
       <React.Fragment>
@@ -49,6 +50,9 @@ function App() {
           </Route>
           <Route path='/viewTasks' exact>
             <ViewTasks/>
+          </Route>
+          <Route path='/Members' exact>
+              <Members/>
           </Route>
         </Switch>
         </Container>

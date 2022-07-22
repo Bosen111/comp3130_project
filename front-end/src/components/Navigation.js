@@ -17,6 +17,7 @@ function Navigation(){
                         <Nav.Link href="/forgotPw">Forgot-Password</Nav.Link>
                         <Nav.Link href="/Workspace">Workspace</Nav.Link>
                         <Nav.Link href="/Workspaces">Workspaces</Nav.Link>
+                        <Nav.Link href="/Members">Members</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
