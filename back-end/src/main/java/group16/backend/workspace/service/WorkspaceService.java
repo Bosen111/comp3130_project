@@ -49,21 +49,21 @@ public class WorkspaceService {
         }
     }
 
-    public void assignUser(Long userId, Long workspaceId) {
-        List<UserModel> users = null;
-        try {
-            UserModel user = userRepository.findById(userId).get();
-            Workspace workspace = workspaceRepo.findById(workspaceId).get();
-
-            users = workspace.getUsers();
-            users.add(user);
-
-            workspace.setUsers(users);
-            workspaceRepo.save(workspace);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void assignUser(Long userId, Long workspaceId) {
+//        List<UserModel> users = null;
+//        try {
+//            UserModel user = userRepository.findById(userId).get();
+//            Workspace workspace = workspaceRepo.findById(workspaceId).get();
+//
+//            users = workspace.getUsers();
+//            users.add(user);
+//
+//            workspace.setUsers(users);
+//            workspaceRepo.save(workspace);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public List<Workspace> getWorkspace() {
         return workspaceRepo.findAll();

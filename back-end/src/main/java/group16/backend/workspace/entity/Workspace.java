@@ -35,9 +35,9 @@ public class Workspace {
 //    )
 //    private List<UserModel> users;
 
-    @OneToMany(targetEntity = BoardModel.class)
-    @JoinColumn(name = "fk_workspaceId", referencedColumnName = "workspaceId")
-    private List<BoardModel> boards;
+//    @OneToMany(targetEntity = BoardModel.class)
+//    @JoinColumn(name = "fk_workspaceId", referencedColumnName = "workspaceId")
+//    private List<BoardModel> boards;
 
     public Long getWorkspaceId() {
         return workspaceId;
@@ -71,20 +71,20 @@ public class Workspace {
         this.description = description;
     }
 
-    public List<UserModel> getUsers() {
-        return null;
-    }
+//    public List<UserModel> getUsers() {
+//        return null;
+//    }
 
-    public void setUsers(List<UserModel> users) {
+//    public void setUsers(List<UserModel> users) {
 //        this.users = users;
-    }
+//    }
 
-    @JsonManagedReference
-    public List<BoardModel> getBoards() {
-        return boards;
-    }
-
-    public void setBoards(List<BoardModel> boards) {
-        this.boards = boards;
-    }
+//    @JsonManagedReference
+//    public List<BoardModel> getBoards() {
+//        return boards;
+//    }
+//
+//    public void setBoards(List<BoardModel> boards) {
+//        this.boards = boards;
+//    }
 }
