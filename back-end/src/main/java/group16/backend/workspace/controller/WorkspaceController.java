@@ -31,12 +31,12 @@ public class WorkspaceController {
         return "Delete message send successfully";
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000"})
-    @PutMapping("/assignUser/{workspaceId}/{userId}")
-    public String assignUser(@PathVariable Long userId, @PathVariable Long workspaceId) {
-        workspaceService.assignUser(userId, workspaceId);
-        return "Adding user message send successfully";
-    }
+//    @CrossOrigin(origins = {"http://localhost:3000"})
+//    @PutMapping("/assignUser/{workspaceId}/{userId}")
+//    public String assignUser(@PathVariable Long userId, @PathVariable Long workspaceId) {
+//        workspaceService.assignUser(userId, workspaceId);
+//        return "Adding user message send successfully";
+//    }
 
     @CrossOrigin(origins = {"http://localhost:3000"})
     @GetMapping("/getAll")
