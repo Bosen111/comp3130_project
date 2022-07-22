@@ -1,6 +1,7 @@
 package group16.backend.workspace.controller;
 
 import com.fasterxml.jackson.annotation.*;
+import group16.backend.board.entity.BoardModel;
 import group16.backend.workspace.entity.Workspace;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class WorkspaceController {
     WorkspaceService workspaceService;
 
     @CrossOrigin(origins = {"http://localhost:3000"})
-    @PostMapping(path = "/add", consumes = {"*/*"})
+    @PostMapping(path = "/add")
     public String addWorkspace(@RequestBody Workspace workspace) {
         workspaceService.saveWorkspace(workspace);
         return "Workspace saved successfully";

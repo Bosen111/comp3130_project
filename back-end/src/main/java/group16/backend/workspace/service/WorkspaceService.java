@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 public class WorkspaceService {
 
     @Autowired
-    public
     WorkspaceRepo workspaceRepo;
 
     @Autowired

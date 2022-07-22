@@ -57,52 +57,59 @@ function ViewTasks() {
 
     let newTaskHref = "/CreateTask?board=" + boardId;
 
-    return (
-        <section style={{ marginTop: '32px' }}>
-            < Typography variant="h2" sx={{margin:"2ch 0"}}>View Tasks for board: {boardData? boardData.name : boardId}</Typography>
-            {error?
-            <div><Typography variant="p" sx={{color:"red"}}>Error: Invalid BoardId in url</Typography><br/></div>:
-            <div>
-            <Button variant='contained' href={newTaskHref} sx={{ marginTop: '16px' }}>
-                New Task
-            </Button>
-            <Grid container spacing={2}>
-                {tasksData.map((task) => {
-                    let statusHref = "/Status?taskId=" + task.id + "&board=" + boardId;
-                    return (
-                        <Grid item xs={12} sm={12} md={4} lg={4} key={task.id}>
-                            <Card elevation={6}>
-                                <ClearIcon sx={{float:"right"}} onClick={()=>{deleteTask(task.id)}
+    if (localStorage.getItem("logState") != null) {
 
-                                }/>
-                                <CardContent>
-                                    <Typography component='h4' variant='h4'>
-                                        {task.taskName}
-                                    </Typography>
-                                    <Typography component='p' variant='p'>
-                                        Due: {task.completionDate}
-                                    </Typography>
-                                    <Typography component='p' variant='p'>
-                                        Status: {task.status}
-                                    </Typography>
-                                    <Typography component='p' variant='p'>
-                                        Assignee: {task.taskMappingUser}
-                                    </Typography>
-                                    <Button variant='contained' sx={{ marginTop: '16px' }}>
-                                        Assign
-                                    </Button>
-                                    <Button variant='contained' href={statusHref} sx={{ marginTop: '16px' }}>
-                                        Change Status
-                                    </Button>
-                                </CardContent>
-                            </Card>
+        return (
+            <section style={{marginTop: '32px'}}>
+                < Typography variant="h2" sx={{margin: "2ch 0"}}>View Tasks for
+                    board: {boardData ? boardData.name : boardId}</Typography>
+                {error ?
+                    <div><Typography variant="p" sx={{color: "red"}}>Error: Invalid BoardId in url</Typography><br/>
+                    </div> :
+                    <div>
+                        <Button variant='contained' href={newTaskHref} sx={{marginTop: '16px'}}>
+                            New Task
+                        </Button>
+                        <Grid container spacing={2}>
+                            {tasksData.map((task) => {
+                                let statusHref = "/Status?taskId=" + task.id + "&board=" + boardId;
+                                return (
+                                    <Grid item xs={12} sm={12} md={4} lg={4} key={task.id}>
+                                        <Card elevation={6}>
+                                            <ClearIcon sx={{float: "right"}} onClick={() => {
+                                                deleteTask(task.id)
+                                            }
+
+                                            }/>
+                                            <CardContent>
+                                                <Typography component='h4' variant='h4'>
+                                                    {task.taskName}
+                                                </Typography>
+                                                <Typography component='p' variant='p'>
+                                                    Due: {task.completionDate}
+                                                </Typography>
+                                                <Typography component='p' variant='p'>
+                                                    Status: {task.status}
+                                                </Typography>
+                                                <Typography component='p' variant='p'>
+                                                    Assignee: {task.taskMappingUser}
+                                                </Typography>
+                                                <Button variant='contained' sx={{marginTop: '16px'}}>
+                                                    Assign
+                                                </Button>
+                                                <Button variant='contained' href={statusHref} sx={{marginTop: '16px'}}>
+                                                    Change Status
+                                                </Button>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                );
+                            })}
                         </Grid>
-                    );
-                })}
-            </Grid>
-            </div>}
-        </section>
-    );
+                    </div>}
+            </section>
+        );
+    }
 };
 
 export default ViewTasks;

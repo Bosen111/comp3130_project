@@ -32,9 +32,9 @@ public class UserModel {
     @JoinColumn(name = "task_mapping_user")
     private List<TaskModel> tasks;
 
-    @OneToMany(targetEntity = BoardModel.class)
-    @JoinColumn(name = "board_mapping_user")
-    private List<BoardModel> boards;
+//    @OneToMany(targetEntity = BoardModel.class)
+//    @JoinColumn(name = "board_mapping_user")
+//    private List<BoardModel> boards;
 
 //    @ManyToMany(mappedBy = "users")
 //    private List<Workspace> workspaces;
@@ -100,16 +100,16 @@ public class UserModel {
         this.tasks = tasks;
     }
 
-    public List<BoardModel> getBoards() {
-        return boards;
-    }
+//    public List<BoardModel> getBoards() {
+//        return boards;
+//    }
 
-    public void setBoards(List<BoardModel> boards) {
-        this.boards = boards;
-    }
-    public List<Workspace> getWorkspaces() {
-        return null;
-    }
+//    public void setBoards(List<BoardModel> boards) {
+//        this.boards = boards;
+//    }
+//    public List<Workspace> getWorkspaces() {
+//        return null;
+//    }
 
 //    public void setWorkspaces(List<Workspace> workspaces) {
 //        this.workspaces = workspaces;
