@@ -29,9 +29,11 @@ function ChangeStatus() {
         })
     }
 
-    return (
-        <ChangeStatusForm changeStatus={changeStatusHandler} />
-    );
+    if (localStorage.getItem("logState") != null) {
+        return (
+            <ChangeStatusForm changeStatus={changeStatusHandler}/>
+        );
+    }
 };
 
 export default ChangeStatus;

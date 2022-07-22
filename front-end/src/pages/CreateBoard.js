@@ -16,9 +16,11 @@ function CreateBoard() {
         }).then(() => history.replace('/boards'));
     }
 
-    return (
-        <CreateBoardForm createBoard={createBoardHandler} />
-    );
+    if (localStorage.getItem("logState") != null) {
+        return (
+            <CreateBoardForm createBoard={createBoardHandler}/>
+        );
+    }
 };
 
 export default CreateBoard;

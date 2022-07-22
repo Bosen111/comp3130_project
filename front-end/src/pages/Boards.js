@@ -17,11 +17,13 @@ function Boards() {
     }, []);
 
 
-    return (
-        <section>
-            <ViewBoards boards={boardsData} />
-        </section>
-    );
+    if (localStorage.getItem("logState") != null) {
+        return (
+            <section>
+                <ViewBoards boards={boardsData}/>
+            </section>
+        );
+    }
 };
 
 export default Boards;
