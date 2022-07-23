@@ -66,6 +66,7 @@ public class WorkspaceService {
 //    }
 
     public List<Workspace> getWorkspace() {
+
         return workspaceRepo.findAll();
     }
 }
