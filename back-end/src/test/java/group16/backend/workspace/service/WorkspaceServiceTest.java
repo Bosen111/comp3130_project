@@ -6,6 +6,7 @@ import group16.backend.user.repository.UserRepository;
 import group16.backend.user.service.UserService;
 import group16.backend.workspace.entity.Workspace;
 import group16.backend.workspace.repository.WorkspaceRepo;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -27,7 +28,12 @@ class WorkspaceServiceTest {
     private WorkspaceRepo workspaceRepo = new WorkspaceRepo() {
         @Override
         public List<Workspace> findAll() {
-            return null;
+            Workspace workspace = new Workspace("Name", "Type", "description");
+            List<Workspace> workspaces = new ArrayList<>();
+            workspaces.add(workspace);
+            Workspace workspace1 = new Workspace("test1", "t", "des");
+            workspaces.add(workspace1);
+            return workspaces;
         }
 
         @Override
@@ -118,7 +124,7 @@ class WorkspaceServiceTest {
                 workspace.setWorkspaceId(i);
                 return Optional.of(workspace);
             }
-            return Optional.empty();
+            return null;
         }
 
         @Override
@@ -358,27 +364,14 @@ class WorkspaceServiceTest {
 
     @Test
     void deleteWorkspace() {
-        long i = Long.valueOf(12345678910L);
+        long i = Long.valueOf(123456780L);
         workspace.setWorkspaceId(i);
         workspaceService.workspaceRepo = workspaceRepo;
         workspaceService.saveWorkspace(workspace);
         workspaceService.deleteWorkspace(i);
-        assertNull(workspaceRepo.findAll());
+        assertNull(workspaceService.workspaceRepo.findById(i));
     }
 
-    @Test
-    void deleteWorkspaceNonExistent() {
-        try {
-            long i = Long.valueOf(123456789L);
-            workspace.setWorkspaceId(i);
-            workspaceService.workspaceRepo = workspaceRepo;
-            workspaceService.saveWorkspace(workspace);
-            workspaceService.deleteWorkspace(i);
-        } catch (ResponseStatusException e) {
-            ResponseStatusException x = new ResponseStatusException(HttpStatus.BAD_REQUEST, "Workspace does not exist");
-            assertEquals(x.getMessage(), e.getMessage());
-        }
-    }
 
     /*@Test
     void assignUser(){
@@ -412,4 +405,20 @@ class WorkspaceServiceTest {
             }
         }
     }*/
+
+    @Test
+    void getWorkspace(){
+        List<Workspace> workspaces = new ArrayList<>();
+        workspaces.add(workspace);
+        Workspace workspace1 = new Workspace("test1", "t", "des");
+        workspaces.add(workspace1);
+        workspaceService.workspaceRepo = workspaceRepo;
+        workspaceService.saveWorkspace(workspace);
+        workspaceService.saveWorkspace(workspace1);
+        List<Workspace> workspaceList = workspaceService.getWorkspace();
+
+        for (int i = 0; i < workspaceList.size(); i++){
+            assertEquals(workspaceList.get(i).getWorkspaceName() , workspaces.get(i).getWorkspaceName());
+        }
+    }
 }
