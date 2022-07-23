@@ -7,6 +7,7 @@ import {Nav} from "react-bootstrap";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const boardId = urlParams.get('board');
+const userId = urlParams.get('user');
 
 function ViewTasks() {
 
@@ -14,6 +15,7 @@ function ViewTasks() {
 
     const [tasksData, setTasksData] = useState([]);
     const [boardData, setBoardData] = useState();
+    const [userData, setUserData] = useState();
     const [error, setError] = useState(false);
 
     function getAllTasks() {
@@ -42,6 +44,19 @@ function ViewTasks() {
             })
     }
 
+    async function getUser(userId) {
+        const url = `http://localhost:9001/user/getById/${userId}`
+        fetch (url)
+            .then(response => response.json())
+            .then(user => {
+                setUserData(user)
+            })
+            .catch(function(error) {
+                console.log(error);
+                setError(true);
+            })
+    }
+
     function deleteTask(taskId) {
         let url="http://localhost:9001/task/delete/" + taskId;
         fetch(url, {
@@ -52,6 +67,7 @@ function ViewTasks() {
 
     useEffect(function () {
         getBoard(boardId)
+        getUser(userId)
         getAllTasks();
     }, []);
 
@@ -73,6 +89,7 @@ function ViewTasks() {
                         <Grid container spacing={2}>
                             {tasksData.map((task) => {
                                 let statusHref = "/Status?taskId=" + task.id + "&board=" + boardId;
+                                let assignHref = "/AssignMembers?taskId=" + task.id + "&board=" + boardId + "&user=" + userId;
                                 return (
                                     <Grid item xs={12} sm={12} md={4} lg={4} key={task.id}>
                                         <Card elevation={6}>
@@ -94,7 +111,7 @@ function ViewTasks() {
                                                 <Typography component='p' variant='p'>
                                                     Assignee: {task.taskMappingUser}
                                                 </Typography>
-                                                <Button variant='contained' sx={{marginTop: '16px'}}>
+                                                <Button variant='contained' href={assignHref} sx={{ marginTop: '16px' }}>
                                                     Assign
                                                 </Button>
                                                 <Button variant='contained' href={statusHref} sx={{marginTop: '16px'}}>

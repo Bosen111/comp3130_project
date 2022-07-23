@@ -111,5 +111,16 @@ public class UserService {
 
         return userRepository.findAll();
     }
+
+    public UserModel findUserByID(Long userId) {
+        UserModel userModel = null;
+
+        Optional<UserModel> optionalUserModel = userRepository.findById(userId);
+        if(optionalUserModel.isPresent()) {
+            userModel = optionalUserModel.get();
+        }
+
+        return userModel;
+    }
     
 }

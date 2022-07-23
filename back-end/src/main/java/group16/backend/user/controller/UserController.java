@@ -69,4 +69,10 @@ public class UserController {
     public List<UserModel> getAllUsers() {
         return userService.getAllUsers();
     }
+
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @GetMapping("/getById/{userId}")
+    public UserModel getUserById(@PathVariable Long userId){
+        return userService.findUserByID(userId);
+    }
 }
