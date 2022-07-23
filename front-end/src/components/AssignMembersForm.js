@@ -41,7 +41,7 @@ function AssignMbForm(props) {
     return (
         <section style={{ marginTop: '32px' }}>
             < Typography variant="h2" sx={{margin:"2ch 0"}}>Assign members of Task: {taskData? taskData.taskName : ''}</Typography>
-            <form onSubmit={AssignMembers}>
+            <form onSubmit={[AssignMembers]}>
                 <label htmlFor="members" >Members: </label>
                 <select name="members" id="members" defaultValue="James">
                     <option value="James">James</option>
